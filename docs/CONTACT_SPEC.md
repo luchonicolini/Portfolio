@@ -1,0 +1,3 @@
+# Contact design brief
+
+Next visual reference: a restrained editorial neo-brutalist contact page using the approved cream, yellow, mint, pink and black palette, large “HABLEMOS.” headline, custom geometric envelope illustration, and clearly labeled contact links. No emojis, generic marketing cards, fake availability, invented email or LinkedIn URL. Use verified GitHub https://github.com/luchonicolini and owner-approved email, LinkedIn and CV only. Prefer direct links over a form in v1; no backend required. Mobile: stacked headline, illustration and spacious touch targets. Keyboard focus, contrast, accessible link names and reduced motion required. Design approval pending.
