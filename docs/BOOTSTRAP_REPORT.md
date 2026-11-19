@@ -32,7 +32,7 @@ Date: 2026-11-19
 | `motion`                              | 14.14.0 | Approved for future purposeful interactive motion |
 | `lucide-react`                        | 1.76.0  | Consistent SVG icon system when icons are needed  |
 
-Exact-pinned development tools: ESLint 9.39.5, `eslint-config-next` 16.4.6, Prettier 3.10.1, TypeScript 5.9.3, Vitest 5.1.1, React Testing Library 16.3.3, `jest-dom` 8.0.0, jsdom 31.0.1, Playwright 1.65.1, axe-core Playwright 4.14.0, Knip 6.46.1, Lighthouse CI 0.16.1, React Grab 0.2.0 and Vite React plugin 6.3.0. The exact dependency tree is in `package-lock.json`.
+Exact-pinned development tools: ESLint 10.15.0, `@eslint/js` 10.0.1, Next's official ESLint plugin 16.4.6, `typescript-eslint` 8.73.0, Prettier 3.10.1, TypeScript 5.9.3, Vitest 5.1.1, React Testing Library 16.3.3, `jest-dom` 8.0.0, jsdom 31.0.1, Playwright 1.65.1, axe-core Playwright 4.14.0, Knip 6.46.1, Lighthouse CI 0.16.1, React Grab 0.2.0 and Vite React plugin 6.3.0. The exact dependency tree is in `package-lock.json`.
 
 Agent-side tooling: Impeccable 4.10.0, Vercel React Best Practices skill, and Emil `animate` / `review-animations` skills. `skills-lock.json` records immutable source commit hashes. Playwright MCP 0.0.86 and Chrome DevTools MCP 1.13.0 are configured in `.codex/config.toml`.
 
