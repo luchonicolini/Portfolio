@@ -1,0 +1,1 @@
+Reserve one folder per project: puente, dolarto, stitchhub, leadradar, scopeguard, rial-electronica. Only authentic owner-approved screenshots and icons. No generated product images. Redact private data. See docs/PROJECTS.md in the repository.
