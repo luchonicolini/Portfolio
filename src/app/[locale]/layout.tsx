@@ -19,7 +19,8 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: 'Luciano Nicolini — Portfolio',
-  description: 'Portfolio técnico en preparación.'
+  description: 'Portfolio técnico en preparación.',
+  icons: { icon: '/brand/favicon.svg' }
 };
 
 export function generateStaticParams() {

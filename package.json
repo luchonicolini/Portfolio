@@ -8,15 +8,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src tests e2e eslint.config.mjs next.config.ts playwright.config.ts vitest.config.ts",
-    "format": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md docs/BOOTSTRAP_REPORT.md",
-    "format:write": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md docs/BOOTSTRAP_REPORT.md",
+    "format": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md \"docs/BOOTSTRAP*.md\"",
+    "format:write": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md \"docs/BOOTSTRAP*.md\"",
     "typecheck": "tsc --noEmit",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "knip": "knip",
     "lighthouse": "lhci autorun",
-    "check": "npm run format && npm run lint && npm run typecheck && npm run test && npm run test:e2e && npm run knip && npm run build"
+    "check": "npm run format && npm run lint && npm run typecheck && npm run test && npm run knip && npm run build && npm run test:e2e && npm run lighthouse"
   },
   "type": "module",
   "private": true,

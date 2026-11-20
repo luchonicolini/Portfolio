@@ -1,6 +1,6 @@
 # Phase 01 — Technical bootstrap report
 
-Date: 2026-11-19
+Date: 2026-11-19 (initial report; hardening results are recorded in `BOOTSTRAP_HARDENING_REPORT.md`)
 
 ## Repository audit before changes
 
@@ -18,8 +18,8 @@ Date: 2026-11-19
 - Motion and Lucide React installed for later purposeful, case-specific usage. No unnecessary service, database, or authentication was added.
 - ESLint, Prettier, TypeScript, Vitest, React Testing Library, Playwright, axe-core, Knip, Lighthouse CI, GitHub Actions and scripts configured.
 - React Grab loads through a development-only dynamic import.
-- Impeccable 4.10.0, Vercel `vercel-react-best-practices`, Emil `animate` and `review-animations` skills were installed from their official repositories and reviewed. Existing local project skills were retained. Impeccable's checked launcher is present and its project detector hook is wired; Codex must approve the hook in its `/hooks` UI the first time.
-- `.codex/config.toml` pins Playwright MCP 0.0.86 and Chrome DevTools MCP 1.13.0. Codex must trust this project and restart/reload its MCP server list before these project-local servers become available in the desktop tool panel.
+- Impeccable 4.10.0, Vercel `vercel-react-best-practices`, Emil `animate` and `review-animations` skills were installed from their official repositories and reviewed. Existing local project skills were retained. The checked Impeccable launcher and project detector hook are wired. At initial bootstrap time, hook approval had not yet been verified; Phase 01.1 verified accepted local consent and exercised detection (see hardening report).
+- `.codex/config.toml` pins Playwright MCP 0.0.86 and Chrome DevTools MCP 1.13.0. At initial bootstrap time, configuration and CLI discovery were checked; Phase 01.1 performed browser operations through both servers (see hardening report).
 
 ## Exact direct dependencies
 
