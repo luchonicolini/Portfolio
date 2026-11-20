@@ -147,7 +147,17 @@ All quality gates defined in `docs/TOOLING.md` were executed and verified in the
 | **E2E 404 & Static Routes** | `npx playwright test` | ✅ PASS | All 12 localized routes returned HTTP 200 with valid `<h1>`; `/es/work/unknown` and `/en/work/unknown` returned HTTP 404. |
 | **Responsive Reflow** | `npx playwright test` | ✅ PASS | Validated 320px, 390px, 768px, 1024px, 1280px, and 1440px viewports with `scrollWidth <= viewportWidth` on all routes (no horizontal overflow). |
 | **Full-Document Axe Scans** | `npx playwright test` | ✅ PASS | Automated axe accessibility scans on `/es/work`, `/en/work`, `/es/work/puente`, and `/es/work/stitchhub` yielded **0 violations**. |
-| **Lighthouse Performance** | `lhci autorun` | ✅ PASS | **100 Accessibility, 100 Best Practices, 100 SEO**, 88 Performance (representative production run). |
+| **Lighthouse Performance** | `lhci autorun` | ✅ PASS | 100 Accessibility & Best Practices on all routes (see breakdown table below). |
+
+### 6.1 Route-Specific Lighthouse Audit Results
+
+Isolated route-specific Lighthouse audits executed against production server (`npm run start`):
+
+| Target Route | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `/es/work` | 79 | **100** | **100** | 83 | 3.2 s | 550 ms | 0 |
+| `/es/work/puente` | 88 | **100** | **100** | 91 | 0.9 s | 490 ms | 0 |
+| `/es/work/stitchhub` | 82 | **100** | **100** | 91 | 3.1 s | 460 ms | 0 |
 
 ---
 
