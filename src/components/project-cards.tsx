@@ -16,13 +16,15 @@ export interface FeaturedMobileCardProps {
   locale: string;
   spanClass: string;
   tallMedia?: boolean;
+  priority?: boolean;
 }
 
 export function FeaturedMobileCard({
   project,
   locale,
   spanClass,
-  tallMedia = false
+  tallMedia = false,
+  priority = false
 }: FeaturedMobileCardProps) {
   const es = locale === 'es';
   const content = es ? project.es : project.en;
@@ -42,7 +44,7 @@ export function FeaturedMobileCard({
 
       <div className={styles.cardBody}>
         <h3 id={`project-${project.id}-title`} className={styles.projectTitle}>
-          {content.title}
+          <a href={`/${locale}/work/${project.slug}`}>{content.title}</a>
         </h3>
         <p className={styles.projectTagline}>{content.tagline}</p>
         <p className={styles.projectDescription}>{content.description}</p>
@@ -78,6 +80,8 @@ export function FeaturedMobileCard({
             alt={es ? project.image.altEs : project.image.altEn}
             width={project.image.width}
             height={project.image.height}
+            priority={priority}
+            fetchPriority={priority ? 'high' : 'auto'}
             className={
               tallMedia ? styles.projectImageContain : styles.projectImage
             }
@@ -155,7 +159,7 @@ export function FeaturedWideCard({
             id={`project-${project.id}-title`}
             className={styles.projectTitle}
           >
-            {content.title}
+            <a href={`/${locale}/work/${project.slug}`}>{content.title}</a>
           </h3>
           <p className={styles.projectTagline}>{content.tagline}</p>
           <p className={styles.projectDescription}>{content.description}</p>
@@ -257,7 +261,7 @@ export function CompactProjectCard({
 
       <div className={styles.cardBody}>
         <h3 id={`project-${project.id}-title`} className={styles.projectTitle}>
-          {content.title}
+          <a href={`/${locale}/work/${project.slug}`}>{content.title}</a>
         </h3>
         <p className={styles.projectTagline}>{content.tagline}</p>
         <p className={styles.projectDescription}>{content.description}</p>

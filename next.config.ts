@@ -4,5 +4,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 export default withNextIntl({
   allowedDevOrigins: ['127.0.0.1'],
-  devIndicators: false
+  devIndicators: false,
+  images: {
+    formats: ['image/avif', 'image/webp']
+  }
 });

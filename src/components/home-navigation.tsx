@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { IconButton } from './design-system/components';
 import { LanguageSwitcher } from './design-system/client-components';
@@ -8,6 +9,7 @@ import styles from './home.module.css';
 
 export function Navigation({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const trigger = useRef<HTMLButtonElement>(null);
   const es = locale === 'es';
 
@@ -93,7 +95,11 @@ export function Navigation({ locale }: { locale: string }) {
             {navItems.map((item) => (
               <a
                 key={item.label}
-                href={item.href}
+                href={
+                  pathname === `/${locale}`
+                    ? item.href
+                    : `/${locale}${item.href}`
+                }
                 className={styles.navLink}
                 onClick={() => setOpen(false)}
               >

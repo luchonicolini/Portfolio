@@ -7,17 +7,22 @@ import { routing } from '@/i18n/routing';
 import { ReactGrab } from '@/components/react-grab';
 import '../globals.css';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-space-grotesk'
 });
 const spaceMono = Space_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
+  display: 'swap',
   variable: '--font-space-mono'
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Luciano Nicolini — Portfolio',
   description: 'Portfolio técnico en preparación.',
   icons: { icon: '/brand/favicon.svg' }

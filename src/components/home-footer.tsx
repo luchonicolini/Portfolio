@@ -45,7 +45,10 @@ export function HomeFooter({ locale }: { locale: string }) {
               <ul className={styles.footerNavList}>
                 {navLinks.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className={styles.footerNavLink}>
+                    <a
+                      href={`/${locale}${item.href}`}
+                      className={styles.footerNavLink}
+                    >
                       {item.label}
                     </a>
                   </li>
