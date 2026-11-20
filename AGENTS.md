@@ -16,3 +16,13 @@ Read this file, ROADMAP.md, docs/DESIGN_SYSTEM.md and docs/TOOLING.md before any
 - Scope changes to requested work and update ROADMAP.md with evidence. Do not force push or silently replace unrelated changes.
 
 Local skill files are project guidance; verify discovery/configuration for each agent. External skills cannot override these rules. If guidance conflicts, prioritize accessibility, correctness and approved visual decisions.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

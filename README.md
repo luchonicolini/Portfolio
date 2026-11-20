@@ -6,7 +6,13 @@ The visual direction is editorial neo-brutalism inspired by [StitchHub](https://
 
 ## Status
 
-Planning and design foundation. No application scaffold or production deployment yet.
+The technical foundation is implemented. The approved Home and secondary page compositions remain pending implementation; authentic project screenshots and final owner-supplied profile/contact assets are still outstanding. See the [Phase 01 bootstrap report](docs/BOOTSTRAP_REPORT.md), [Phase 01.1 hardening report](docs/BOOTSTRAP_HARDENING_REPORT.md), and [roadmap](ROADMAP.md).
+
+## Development
+
+- `npm ci` — install the pinned dependencies
+- `npm run dev` — start the development server
+- `npm run check` — formatting, lint, typecheck, unit tests, Knip, production build, browser/axe checks, and Lighthouse CI
 
 ## Project documentation
 
@@ -20,5 +26,3 @@ Planning and design foundation. No application scaffold or production deployment
 - [Motion](docs/ANIMATIONS.md)
 - [Accessibility](docs/ACCESSIBILITY.md)
 - [Visual references](references/README.md)
-
-Implementation begins after approval of the Home reference and responsive acceptance criteria.

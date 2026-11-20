@@ -1,0 +1,7 @@
+[mcp_servers.playwright]
+command = "npx"
+args = ["--yes", "@playwright/mcp@0.0.86"]
+
+[mcp_servers.chrome_devtools]
+command = "npx"
+args = ["--yes", "chrome-devtools-mcp@1.13.0", "--headless=true", "--isolated=true"]

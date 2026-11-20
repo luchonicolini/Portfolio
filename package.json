@@ -1,0 +1,59 @@
+{
+  "name": "portfolio-luciano-nicolini",
+  "version": "0.1.0",
+  "description": "Luciano Nicolini personal portfolio",
+  "scripts": {
+    "test": "vitest run",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src tests e2e eslint.config.mjs next.config.ts playwright.config.ts vitest.config.ts",
+    "format": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md \"docs/BOOTSTRAP*.md\"",
+    "format:write": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"messages/*.json\" \"*.{json,mjs}\" next.config.ts playwright.config.ts vitest.config.ts \".github/workflows/*.yml\" ROADMAP.md \"docs/BOOTSTRAP*.md\"",
+    "typecheck": "tsc --noEmit",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "knip": "knip",
+    "lighthouse": "lhci autorun",
+    "check": "npm run format && npm run lint && npm run typecheck && npm run test && npm run knip && npm run build && npm run test:e2e && npm run lighthouse"
+  },
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "lucide-react": "1.76.0",
+    "motion": "14.14.0",
+    "next": "16.4.6",
+    "next-intl": "4.15.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwindcss": "4.3.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "10.0.1",
+    "@lhci/cli": "0.16.1",
+    "@next/eslint-plugin-next": "16.4.6",
+    "@playwright/test": "1.65.1",
+    "@testing-library/jest-dom": "8.0.0",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "eslint": "10.15.0",
+    "globals": "17.14.0",
+    "jsdom": "31.0.1",
+    "knip": "6.46.1",
+    "postcss": "8.5.33",
+    "prettier": "3.10.1",
+    "react-grab": "0.2.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.73.0",
+    "vitest": "5.1.1"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

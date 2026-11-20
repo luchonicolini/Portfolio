@@ -1,35 +1,35 @@
 # Tooling and quality gates
 
-Status: approved direction; installation and compatibility checks pending.
+Status: Core stack, quality scripts, CI and selected agent skills were installed and verified on 2026-11-19. Phase 01.1 verified production browser, full-document axe and Lighthouse workflows; the Home and secondary page implementations and release checks remain pending. See `BOOTSTRAP_REPORT.md` and `BOOTSTRAP_HARDENING_REPORT.md` for versions and actual results.
 Reference: [StitchHub](https://github.com/luchonicolini/StitchHub). Reuse its visual language, not its application architecture.
 
 ## Core stack
 
-| Tool | Purpose | Priority |
-| --- | --- | --- |
-| Next.js (App Router), React, TypeScript | Site architecture and typed components | Required |
-| Tailwind CSS and native CSS | Custom design tokens and responsive layouts | Required |
-| Space Grotesk, Space Mono via next/font | Approved typography | Required |
-| Motion | Purposeful microinteractions | Required when motion is implemented |
-| Custom SVG, Lucide, SVGO | Consistent iconography and optimized assets | Required as needed |
-| MDX, next-intl | Project case studies and Spanish/English localization | Planned; validate need before installation |
-| GSAP | Complex timelines and typography | Optional |
-| Rive, Lenis | Custom vector motion or smooth scrolling | Optional; only with demonstrated benefit |
+| Tool                                    | Purpose                                               | Priority                                   |
+| --------------------------------------- | ----------------------------------------------------- | ------------------------------------------ |
+| Next.js (App Router), React, TypeScript | Site architecture and typed components                | Required                                   |
+| Tailwind CSS and native CSS             | Custom design tokens and responsive layouts           | Required                                   |
+| Space Grotesk, Space Mono via next/font | Approved typography                                   | Required                                   |
+| Motion                                  | Purposeful microinteractions                          | Required when motion is implemented        |
+| Custom SVG, Lucide, SVGO                | Consistent iconography and optimized assets           | Required as needed                         |
+| MDX, next-intl                          | Project case studies and Spanish/English localization | Planned; validate need before installation |
+| GSAP                                    | Complex timelines and typography                      | Optional                                   |
+| Rive, Lenis                             | Custom vector motion or smooth scrolling              | Optional; only with demonstrated benefit   |
 
 Use stable mutually compatible releases, a single package manager and a committed lockfile. Keep client components minimal. Do not install optional libraries speculatively.
 
 ## Design and agent tooling
 
-| Tool | Purpose | Policy |
-| --- | --- | --- |
-| [Impeccable](https://github.com/pbakaus/impeccable) | Critique, audit, polish, typography and generic AI-pattern detection | Required review workflow |
-| Human-Crafted Design (local skill, pending) | Project-specific design constraints | Required |
-| [Emil Design Engineering](https://github.com/emilkowalski/skills) | Motion and interaction craft | Recommended |
-| [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills) | React and Next.js engineering guidance | Recommended |
-| [React Grab](https://github.com/aidenybai/react-grab) | Select rendered components and share source context with agents | Development only |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Browser navigation and screenshots for agents | Recommended |
-| [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) | Inspect DOM, console and performance | Recommended |
-| Taste Skill / Frontend Craft | Additional design critique | Optional; avoid conflicting guidance |
+| Tool                                                                         | Purpose                                                              | Policy                               |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------ |
+| [Impeccable](https://github.com/pbakaus/impeccable)                          | Critique, audit, polish, typography and generic AI-pattern detection | Required review workflow             |
+| Human-Crafted Design (local skill)                                           | Project-specific design constraints                                  | Required                             |
+| [Emil Design Engineering](https://github.com/emilkowalski/skills)            | Motion and interaction craft                                         | Recommended                          |
+| [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)           | React and Next.js engineering guidance                               | Recommended                          |
+| [React Grab](https://github.com/aidenybai/react-grab)                        | Select rendered components and share source context with agents      | Development only                     |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp)                | Browser navigation and screenshots for agents                        | Recommended                          |
+| [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) | Inspect DOM, console and performance                                 | Recommended                          |
+| Taste Skill / Frontend Craft                                                 | Additional design critique                                           | Optional; avoid conflicting guidance |
 
 Verify official installation instructions and compatibility with Codex and Antigravity before configuring tools. MCP tools and skills are agent-side tooling, not production dependencies. Pin reviewed revisions where practical; inspect third-party instructions and permissions before use. Never expose credentials or private project data to external tools. Do not assume an AI critique is an objective authorship detector.
 
@@ -41,18 +41,18 @@ No emoji UI, generic SaaS card grids, decorative gradients, gratuitous glass eff
 
 ## Testing and engineering quality
 
-| Tool | Purpose | Priority |
-| --- | --- | --- |
-| ESLint, TypeScript, Prettier | Static analysis, type safety and formatting | Required |
-| Vitest, React Testing Library | Unit and behavior tests | Required where applicable |
-| Playwright | E2E and screenshot regression tests | Required |
-| @axe-core/playwright | Automated accessibility checks | Required |
-| Lighthouse CI | Performance, accessibility, SEO and best practices | Required before release |
-| Knip | Unused files, exports and dependencies | Required |
-| @next/bundle-analyzer | Investigate bundle size | On demand |
-| Storybook, Argos | Component catalog or hosted visual regression | Optional |
-| Renovate | Dependency updates via reviewed PRs | Optional |
-| GitHub Actions, Vercel | CI checks and preview/production deployments | Planned |
+| Tool                          | Purpose                                            | Priority                  |
+| ----------------------------- | -------------------------------------------------- | ------------------------- |
+| ESLint, TypeScript, Prettier  | Static analysis, type safety and formatting        | Required                  |
+| Vitest, React Testing Library | Unit and behavior tests                            | Required where applicable |
+| Playwright                    | E2E and screenshot regression tests                | Required                  |
+| @axe-core/playwright          | Automated accessibility checks                     | Required                  |
+| Lighthouse CI                 | Performance, accessibility, SEO and best practices | Required before release   |
+| Knip                          | Unused files, exports and dependencies             | Required                  |
+| @next/bundle-analyzer         | Investigate bundle size                            | On demand                 |
+| Storybook, Argos              | Component catalog or hosted visual regression      | Optional                  |
+| Renovate                      | Dependency updates via reviewed PRs                | Optional                  |
+| GitHub Actions, Vercel        | CI checks and preview/production deployments       | Planned                   |
 
 Keep testing packages in devDependencies. Do not require paid services for the initial release. Prefer static content and local data; no Supabase, auth, Redux, Zustand or full generic UI kit without a concrete requirement.
 
@@ -77,11 +77,12 @@ Keep testing packages in devDependencies. Do not require paid services for the i
 
 ## Implementation checklist
 
-- [ ] Approve Home mockup and responsive design.
-- [ ] Add AGENTS.md, design system, architecture, project inventory and motion/accessibility guidelines.
-- [ ] Bootstrap Next.js with verified versions and lockfile.
-- [ ] Install and verify required agent tooling; document supported invocation commands.
-- [ ] Configure test scripts, GitHub Actions and visual baselines after approval.
+- [x] Approve Home mockup and responsive design.
+- [x] Add AGENTS.md, design system, architecture, project inventory and motion/accessibility guidelines.
+- [x] Bootstrap Next.js with verified versions and lockfile.
+- [x] Install and verify required agent tooling; document configuration in `BOOTSTRAP_REPORT.md`.
+- [x] Configure test scripts and GitHub Actions.
+- [ ] Record visual baselines after the approved Home is implemented and reviewed.
 - [ ] Implement pages and case studies; validate each quality gate.
 - [ ] Deploy preview, review and publish.
 

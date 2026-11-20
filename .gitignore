@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/review/
+*.tsbuildinfo
+.env*
+!.env.example
