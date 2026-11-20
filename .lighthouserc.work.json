@@ -1,0 +1,25 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:3000/es/work",
+        "http://localhost:3000/es/work/puente",
+        "http://localhost:3000/es/work/stitchhub"
+      ],
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready in",
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless=new"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["warn", { "minScore": 0.95 }],
+        "categories:best-practices": ["warn", { "minScore": 0.95 }],
+        "categories:seo": ["warn", { "minScore": 0.95 }]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": "./.lighthouseci-work" }
+  }
+}

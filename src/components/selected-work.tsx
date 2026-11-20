@@ -31,12 +31,9 @@ export function SelectedWork({ locale }: { locale: string }) {
             </h2>
           </div>
           <div className={styles.sectionHeaderRight}>
-            <span className={styles.sectionBadge} aria-disabled="true">
+            <a className={styles.sectionBadge} href={`/${locale}/work`}>
               {es ? 'VER TODOS' : 'VIEW ALL'} →
-              <small className={styles.actionBadge}>
-                {es ? 'Próximamente' : 'Coming soon'}
-              </small>
-            </span>
+            </a>
           </div>
         </div>
 
