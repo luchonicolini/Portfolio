@@ -29,11 +29,29 @@ describe('About page components', () => {
     ).toBeInTheDocument();
     expect(screen.getAllByText('LN.').length).toBeGreaterThanOrEqual(2);
 
-    // Timeline items
-    expect(screen.getByText('2019')).toBeInTheDocument();
-    expect(screen.getByText('2022')).toBeInTheDocument();
-    expect(screen.getByText('2024')).toBeInTheDocument();
-    expect(screen.getByText('Hoy')).toBeInTheDocument();
+    // Development profile items (evidence-based, no unverified dates)
+    expect(
+      screen.getByRole('heading', {
+        name: /Perfil de desarrollo\./i,
+        level: 2
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText('iOS')).toBeInTheDocument();
+    expect(
+      screen.getByText('Native iOS — Swift & SwiftUI')
+    ).toBeInTheDocument();
+    expect(screen.getAllByText('Flutter').length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getByText('Cross-platform — Flutter & Dart')
+    ).toBeInTheDocument();
+    expect(screen.getAllByText('Web').length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getByText('Web engineering — Next.js & TypeScript')
+    ).toBeInTheDocument();
+    expect(screen.getByText('Enfoque')).toBeInTheDocument();
+    expect(
+      screen.getByText('Current focus — Producto y accesibilidad')
+    ).toBeInTheDocument();
 
     // Tech Stack verified pills
     expect(screen.getAllByText('Flutter').length).toBeGreaterThanOrEqual(1);
@@ -62,7 +80,8 @@ describe('About page components', () => {
       screen.getByRole('heading', { name: /ABOUT ME\./i, level: 1 })
     ).toBeInTheDocument();
     expect(screen.getByText('Mobile & Web Developer')).toBeInTheDocument();
-    expect(screen.getByText('Now')).toBeInTheDocument();
+    expect(screen.getByText('Development profile.')).toBeInTheDocument();
+    expect(screen.getByText('Focus')).toBeInTheDocument();
     expect(screen.getByText('Explore & Define')).toBeInTheDocument();
   });
 });

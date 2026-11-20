@@ -18,6 +18,7 @@ export function SecondaryNavigation({
 }: SecondaryNavigationProps) {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
+  const navInnerRef = useRef<HTMLDivElement>(null);
   const es = locale === 'es';
 
   const navItems = [
@@ -52,6 +53,33 @@ export function SecondaryNavigation({
     trigger.current?.focus();
   }
 
+  // Nonmodal disclosure menu: global Escape key closure with focus restoration
+  useEffect(() => {
+    if (!open) return;
+    function handleDocumentKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        close();
+      }
+    }
+    document.addEventListener('keydown', handleDocumentKeyDown);
+    return () => document.removeEventListener('keydown', handleDocumentKeyDown);
+  }, [open]);
+
+  // Outside click detection to close disclosure menu
+  useEffect(() => {
+    if (!open) return;
+    function handleOutsideClick(event: MouseEvent) {
+      if (
+        navInnerRef.current &&
+        !navInnerRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [open]);
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth >= 768 && open) {
@@ -64,11 +92,13 @@ export function SecondaryNavigation({
 
   return (
     <header className={styles.header}>
-      <div className={styles.navInner}>
+      <div ref={navInnerRef} className={styles.navInner}>
         <Link
           className={styles.brand}
           href={`/${locale}`}
-          aria-label="LN. Luciano Nicolini — Inicio"
+          aria-label={
+            es ? 'LN. Luciano Nicolini — Inicio' : 'LN. Luciano Nicolini — Home'
+          }
         >
           <span className={styles.logo}>LN.</span>
           <span className={styles.brandText}>

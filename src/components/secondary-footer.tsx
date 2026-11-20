@@ -38,7 +38,11 @@ export function SecondaryFooter({ locale }: { locale: string }) {
             <Link
               className={styles.brand}
               href={`/${locale}`}
-              aria-label="LN. Luciano Nicolini — Inicio"
+              aria-label={
+                es
+                  ? 'LN. Luciano Nicolini — Inicio'
+                  : 'LN. Luciano Nicolini — Home'
+              }
             >
               <span className={styles.logo}>LN.</span>
               <span className={styles.brandText}>

@@ -48,9 +48,12 @@ describe('Contact page components', () => {
       })
     ).toBeInTheDocument();
 
-    // Secondary navigation active state
+    // Secondary navigation active state & localized brand name
     const contactLink = screen.getByRole('link', { name: 'Contacto' });
     expect(contactLink).toHaveAttribute('aria-current', 'page');
+    expect(
+      screen.getByRole('link', { name: 'LN. Luciano Nicolini — Inicio' })
+    ).toBeInTheDocument();
   });
 
   it('renders English equivalent content without test email leak', () => {

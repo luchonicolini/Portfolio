@@ -20,32 +20,38 @@ import styles from './about.module.css';
 export function AboutContent({ locale }: { locale: string }) {
   const es = locale === 'es';
 
-  const timelineItems = [
+  const profileItems = [
     {
-      year: '2019',
+      badge: 'iOS',
+      title: 'Native iOS — Swift & SwiftUI',
       text: es
-        ? 'Primeros pasos en desarrollo iOS con Swift y SwiftUI, explorando patrones nativos de Apple.'
-        : 'First steps in iOS development with Swift and SwiftUI, exploring Apple native patterns.',
+        ? 'Desarrollo nativo para el ecosistema Apple, aplicando SwiftUI y arquitecturas limpias para interfaces fluidas.'
+        : 'Native engineering for Apple platforms, applying SwiftUI and clean architectures for smooth user interfaces.',
       active: false
     },
     {
-      year: '2022',
+      badge: 'Flutter',
+      title: 'Cross-platform — Flutter & Dart',
       text: es
-        ? 'Amplié mi enfoque a Flutter para desarrollar aplicaciones multiplataforma con arquitectura por capas.'
-        : 'Expanded focus to Flutter for cross-platform applications with layered architectures.',
+        ? 'Aplicaciones multiplataforma con arquitectura por capas, gestión de estado predecible y accesibilidad integrada.'
+        : 'Cross-platform applications with layered architectures, predictable state management, and built-in accessibility.',
       active: false
     },
     {
-      year: '2024',
+      badge: 'Web',
+      title: 'Web engineering — Next.js & TypeScript',
       text: es
-        ? 'Incorporé desarrollo web con Next.js y TypeScript, fortaleciendo mis proyectos y suites de pruebas.'
-        : 'Integrated modern web development with Next.js and TypeScript, strengthening projects and test suites.',
+        ? 'Ingeniería web moderna con tipado estricto, componentes semánticos, rendimiento optimizado y suites de pruebas.'
+        : 'Modern web engineering with strict typing, semantic components, optimized performance, and test suites.',
       active: false
     },
     {
-      year: es ? 'Hoy' : 'Now',
+      badge: es ? 'Enfoque' : 'Focus',
+      title: es
+        ? 'Current focus — Producto y accesibilidad'
+        : 'Current focus — Product & accessibility',
       text: es
-        ? 'Trabajo en proyectos propios combinando mobile, web, diseño editorial y accesibilidad comprobable.'
+        ? 'Desarrollo de productos propios combinando mobile, web, diseño editorial y accesibilidad comprobable.'
         : 'Building independent products combining mobile, web, editorial craft, and verified accessibility.',
       active: true
     }
@@ -192,18 +198,12 @@ export function AboutContent({ locale }: { locale: string }) {
                       ? 'Desarrollo nativo & multiplataforma'
                       : 'Native & Cross-Platform Development'}
                   </p>
-                  <div className={styles.avatarPills}>
-                    <span className={styles.avatarPill}>iOS / SwiftUI</span>
-                    <span className={styles.avatarPill}>Flutter</span>
-                    <span className={styles.avatarPill}>Next.js</span>
-                    <span className={styles.avatarPill}>A11y Target</span>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Journey Timeline */}
+          {/* Right Column: Development Profile */}
           <div
             className={styles.journeyCard}
             aria-labelledby="journey-card-title"
@@ -211,24 +211,31 @@ export function AboutContent({ locale }: { locale: string }) {
             <div className={styles.journeyHeader}>
               <h2 id="journey-card-title" className={styles.journeyTitle}>
                 <Layers size={20} aria-hidden="true" />
-                <span>{es ? 'Mi trayectoria.' : 'My journey.'}</span>
+                <span>
+                  {es ? 'Perfil de desarrollo.' : 'Development profile.'}
+                </span>
               </h2>
               <div className={styles.journeyHazard} aria-hidden="true" />
             </div>
 
             <ol className={styles.timelineList}>
-              {timelineItems.map((item) => (
+              {profileItems.map((item) => (
                 <li
-                  key={item.year}
+                  key={item.badge}
                   className={`${styles.timelineItem} ${item.active ? styles.timelineItemActive : ''}`}
                 >
                   <span className={styles.timelineNode} aria-hidden="true" />
                   <span
                     className={`${styles.timelineYearBadge} ${item.active ? styles.timelineYearBadgeActive : ''}`}
                   >
-                    {item.year}
+                    {item.badge}
                   </span>
-                  <p className={styles.timelineText}>{item.text}</p>
+                  <div className={styles.timelineContent}>
+                    <strong className={styles.timelineItemTitle}>
+                      {item.title}
+                    </strong>
+                    <p className={styles.timelineText}>{item.text}</p>
+                  </div>
                 </li>
               ))}
             </ol>

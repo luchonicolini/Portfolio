@@ -20,16 +20,41 @@ test('About page is accessible, responsive and verified across locales', async (
         : 'Editorial badge of Luciano Nicolini';
     await expect(page.getByLabel(avatarAriaLabel)).toBeVisible();
 
-    // Verify journey timeline
+    // Verify localized brand accessible name in header
+    const brandAriaLabel =
+      locale === 'es'
+        ? 'LN. Luciano Nicolini — Inicio'
+        : 'LN. Luciano Nicolini — Home';
+    await expect(
+      page.getByRole('banner').getByRole('link', { name: brandAriaLabel })
+    ).toBeVisible();
+
+    // Verify development profile (evidence-based, no unverified dates)
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: locale === 'es' ? /Mi trayectoria/ : /My journey/
+        name: locale === 'es' ? /Perfil de desarrollo/ : /Development profile/
       })
     ).toBeVisible();
-    await expect(page.getByText('2019')).toBeVisible();
-    await expect(page.getByText('2022')).toBeVisible();
-    await expect(page.getByText('2024')).toBeVisible();
+    await expect(page.getByText('Native iOS — Swift & SwiftUI')).toBeVisible();
+    await expect(
+      page.getByText('Cross-platform — Flutter & Dart')
+    ).toBeVisible();
+    await expect(
+      page.getByText('Web engineering — Next.js & TypeScript')
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        locale === 'es'
+          ? 'Current focus — Producto y accesibilidad'
+          : 'Current focus — Product & accessibility'
+      )
+    ).toBeVisible();
+
+    // Verify unverified dates are strictly absent
+    await expect(page.getByText('2019')).toHaveCount(0);
+    await expect(page.getByText('2022')).toHaveCount(0);
+    await expect(page.getByText('2024')).toHaveCount(0);
 
     // Verify tech stack
     await expect(
@@ -110,13 +135,18 @@ test('Contact page is accessible, responsive and protects production fixtures', 
   }
 });
 
-test('secondary navigation language switching and mobile drawer work on About & Contact', async ({
+test('secondary navigation language switching and nonmodal disclosure menu work on About & Contact', async ({
   page
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/es/about');
 
-  // Verify hamburger button
+  // Verify hamburger button and localized brand accessible name
+  await expect(
+    page
+      .getByRole('banner')
+      .getByRole('link', { name: 'LN. Luciano Nicolini — Inicio' })
+  ).toBeVisible();
   const menuBtn = page.getByRole('button', { name: 'Abrir menú' });
   await expect(menuBtn).toBeVisible();
   await menuBtn.click();
@@ -124,9 +154,12 @@ test('secondary navigation language switching and mobile drawer work on About & 
     page.getByRole('button', { name: 'Cerrar menú' })
   ).toHaveAttribute('aria-expanded', 'true');
 
-  // Close with Escape
+  // Close with Escape and verify focus restoration
   await page.keyboard.press('Escape');
   await expect(menuBtn).toBeFocused();
+  await expect(
+    page.getByRole('button', { name: 'Abrir menú' })
+  ).toHaveAttribute('aria-expanded', 'false');
 
   // Test language switcher preserves /about route in English
   await menuBtn.click();
@@ -134,6 +167,11 @@ test('secondary navigation language switching and mobile drawer work on About & 
   await expect(page).toHaveURL(/\/en\/about$/);
   await expect(
     page.getByRole('heading', { level: 1, name: /ABOUT ME/ })
+  ).toBeVisible();
+  await expect(
+    page
+      .getByRole('banner')
+      .getByRole('link', { name: 'LN. Luciano Nicolini — Home' })
   ).toBeVisible();
 
   // Navigate to /en/contact

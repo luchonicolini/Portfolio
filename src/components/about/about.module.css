@@ -255,20 +255,19 @@
   margin: 0;
 }
 
-.avatarPills {
+.timelineContent {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.35rem;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
 }
 
-.avatarPill {
-  background: #ffffff;
-  border: 1.5px solid var(--color-ink);
-  padding: 0.15rem 0.5rem;
-  font-family: var(--font-space-mono), monospace;
-  font-size: 0.7rem;
+.timelineItemTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
 }
 
 /* Journey Timeline Box */
@@ -365,11 +364,11 @@
   box-shadow: 2px 2px 0 var(--color-ink);
   padding: 0.2rem 0.55rem;
   font-family: var(--font-space-mono), monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--color-ink);
   flex-shrink: 0;
-  min-width: 56px;
+  min-width: 68px;
   text-align: center;
 }
 
@@ -689,6 +688,11 @@
 @media (max-width: 767px) {
   .aboutPage {
     padding-block: 1.5rem;
+  }
+
+  .avatarCard {
+    transform: none;
+    box-shadow: 4px 4px 0 var(--color-ink);
   }
 
   .headline {
