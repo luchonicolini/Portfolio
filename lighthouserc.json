@@ -4,7 +4,7 @@
       "url": ["http://localhost:3000/es"],
       "startServerCommand": "npm run start",
       "startServerReadyPattern": "Ready in",
-      "numberOfRuns": 1
+      "numberOfRuns": 3
     },
     "assert": {
       "assertions": {

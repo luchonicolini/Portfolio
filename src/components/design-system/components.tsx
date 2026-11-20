@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import type {
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  ReactNode,
+  Ref
+} from 'react';
 import styles from './components.module.css';
 
 type ClassName = { className?: string };
@@ -39,7 +44,8 @@ export function IconButton({
   className,
   children,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & ClassName) {
+}: ButtonHTMLAttributes<HTMLButtonElement> &
+  ClassName & { 'aria-label': string; ref?: Ref<HTMLButtonElement> }) {
   return (
     <button
       aria-label={ariaLabel}

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import styles from './components.module.css';
 import { Button, IconButton } from './components';
 
@@ -17,6 +17,18 @@ export function LanguageSwitcher({
 }) {
   const locale = useLocale();
   const pathname = usePathname();
+  const [suffix, setSuffix] = useState('');
+  useEffect(() => {
+    const update = () =>
+      setSuffix(window.location.search + window.location.hash);
+    update();
+    window.addEventListener('popstate', update);
+    window.addEventListener('hashchange', update);
+    return () => {
+      window.removeEventListener('popstate', update);
+      window.removeEventListener('hashchange', update);
+    };
+  }, [pathname]);
   const pathWithoutLocale = pathname.replace(/^\/(es|en)(?=\/|$)/, '') || '';
   const locales = [
     { id: 'es', label: 'ES', name: spanishLabel },
@@ -42,7 +54,7 @@ export function LanguageSwitcher({
           <Link
             aria-label={`${item.label} — ${item.name}`}
             className={styles.languageLink}
-            href={`/${item.id}${pathWithoutLocale}`}
+            href={`/${item.id}${pathWithoutLocale}${suffix}`}
             key={item.id}
             lang={item.id}
             hrefLang={item.id}
@@ -99,17 +111,19 @@ export function CopyButton({
   );
 }
 
-function AccessibleDialog({
+export function AccessibleDialog({
   open,
   onOpenChange,
   title,
   body,
+  children,
   closeLabel
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
-  body: string;
+  body?: string;
+  children?: ReactNode;
   closeLabel: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -136,7 +150,8 @@ function AccessibleDialog({
       <h3 className={styles.dialogTitle} id={titleId}>
         {title}
       </h3>
-      <p className={styles.dialogBody}>{body}</p>
+      {body ? <p className={styles.dialogBody}>{body}</p> : null}
+      {children}
       <Button
         autoFocus
         onClick={() => onOpenChange(false)}

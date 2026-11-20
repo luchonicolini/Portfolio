@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import { AccessibleDialog } from './client-components';
 import {
   BrutalistPanel,
   Button,
@@ -60,5 +61,36 @@ describe('design-system primitives', () => {
     expect(
       screen.getByRole('img', { name: 'Approved sample artwork' })
     ).toBeInTheDocument();
+  });
+
+  it('renders accessible dialog primitive with title and close button', () => {
+    HTMLDialogElement.prototype.showModal =
+      HTMLDialogElement.prototype.showModal ||
+      function (this: HTMLDialogElement) {
+        this.open = true;
+      };
+    HTMLDialogElement.prototype.close =
+      HTMLDialogElement.prototype.close ||
+      function (this: HTMLDialogElement) {
+        this.open = false;
+      };
+
+    render(
+      <AccessibleDialog
+        closeLabel="Cerrar"
+        onOpenChange={() => {}}
+        open={true}
+        title="Diálogo modal de prueba"
+      >
+        <p>Contenido modal accesible</p>
+      </AccessibleDialog>
+    );
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 3, name: 'Diálogo modal de prueba' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Contenido modal accesible')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Cerrar' })).toBeInTheDocument();
   });
 });

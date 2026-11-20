@@ -72,6 +72,10 @@ test('keyboard focus, dialog, copy action and disabled state work', async ({
 
   await page.getByRole('button', { name: 'Copiar token primario' }).click();
   await expect(page.getByRole('status')).toContainText('Token copiado.');
+  const clipboardText = await page.evaluate(() =>
+    navigator.clipboard.readText()
+  );
+  expect(clipboardText).toBe('--color-primary: #FFDE00');
   await expect(
     page.getByRole('button', { name: 'Ver ejemplos de movimiento' })
   ).toBeVisible();
