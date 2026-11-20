@@ -175,3 +175,84 @@ All automated quality gates defined in `docs/TOOLING.md` were executed and passe
 ## 7. Conclusion
 
 Phase 08 is fully validated and ready for review. All pages function cohesively as a unified application while honoring the approved editorial neo-brutalist visual baseline and strict accessibility standards.
+
+---
+
+## 8. Phase 08.1 — Integration Polish & Production Readiness
+
+### 8.1. Exact Files Changed
+
+- `src/components/site-footer.tsx`: Removed public design attribution (`StitchHub inspired`) and replaced it with localized professional taglines.
+- `src/components/about-preview.tsx`: Added direct link (`VER MÁS →` / `VIEW MORE →`) connecting the Home About preview section to the dedicated `/[locale]/about` page.
+- `src/app/[locale]/layout.tsx`: Replaced provisional metadata (`Portfolio técnico en preparación.`) with localized professional descriptions in Spanish and English; implemented `getValidatedSiteUrl()` for robust, URL-validated `metadataBase` resolution.
+- `docs/screenshots/*`: Refreshed responsive desktop and mobile screenshots across all routes from automated Playwright test executions.
+- `docs/INTEGRATION_REPORT.md`: Documented Phase 08.1 findings, changes, verification metrics, and deployment guidelines.
+
+### 8.2. Public Attribution Correction
+
+- In `src/components/site-footer.tsx`, removed the public-facing `Editorial Neo-brutalism · StitchHub inspired` text.
+- Replaced with:
+  - **Spanish (`es`):** `Diseño, código y experiencias digitales.`
+  - **English (`en`):** `Design, code and digital experiences.`
+- Preserved all existing layout rules, font stacks (`Space Mono`), high-contrast colors, and responsive stacking.
+- Verified that technical open-source references (e.g. project case study repositories, authentic GitHub links) remain intact.
+
+### 8.3. Localized Metadata Improvements
+
+- In `src/app/[locale]/layout.tsx`, converted static root metadata into dynamic `generateMetadata({ params })`:
+  - **Spanish (`es`):** `Portfolio de Luciano Nicolini, desarrollador de aplicaciones móviles y web especializado en SwiftUI, Flutter, React y Next.js.`
+  - **English (`en`):** `Luciano Nicolini's portfolio showcasing mobile and web development with SwiftUI, Flutter, React and Next.js.`
+- Configured dynamic OpenGraph metadata with matching localized descriptions and locales (`es_AR` / `en_US`).
+- Preserved standard static site generation (SSG) across all 24 static routes.
+
+### 8.4. Production URL Configuration Assessment
+
+- **URL Resolution Hierarchy:**
+  1. `process.env.NEXT_PUBLIC_SITE_URL`: Checked first for custom production domain.
+  2. `process.env.VERCEL_URL`: Checked second; prepends `https://` to the system-provided deployment host.
+  3. `http://localhost:3000`: Safe fallback applied strictly in local development/test environments.
+- **URL Validation:** Added `getValidatedSiteUrl()` to parse candidate strings via `new URL()`, ensuring valid hostnames before constructing `metadataBase` objects. Prevents runtime crashes from invalid environment variables.
+- **Production Safety:**
+  - On Vercel preview and production deployments, `VERCEL_URL` is automatically populated, guaranteeing that canonical and hreflang URLs never resolve to `localhost`.
+  - For custom production domains, configure `NEXT_PUBLIC_SITE_URL` in the Vercel Project Settings (Environment Variables) with the verified canonical URL (e.g. `https://lucianonicolini.dev`).
+
+### 8.5. Navigation and Footer Consistency Findings
+
+- All navigation links and in-page anchors verified:
+  - Home navigation uses in-page anchors (`#work`, `#about`, `#lab`, `#contact`) allowing smooth scrolling on the primary landing page.
+  - Secondary pages (`/work`, `/work/[slug]`, `/about`, `/contact`) route to dedicated canonical pages (`/${locale}/work`, `/${locale}/about`, `/${locale}#lab`, `/${locale}/contact`).
+  - Home's `AboutPreview` now features an explicit direct link (`VER MÁS →` / `VIEW MORE →`) to `/[locale]/about`.
+  - `#lab` remains consistently an in-page anchor pointing to Home's interactive preview widget across all pages, pending the dedicated Lab phase.
+  - Language switcher preserves pathnames, category search parameters (`?category=mobile`), and URL hash fragments.
+  - Nonmodal drawer disclosure pattern validated with keyboard focus trapping, Escape dismissal, outside-click dismissal, and viewport resize threshold at 768px.
+
+### 8.6. Visual Consistency Review
+
+- Compared generated screenshots with approved design baselines:
+  - `references/desktop/home.png` vs `docs/screenshots/home-desktop.png`
+  - `references/desktop/work.png` vs `docs/screenshots/work-desktop.png`
+  - `references/desktop/project-detail.png` vs `docs/screenshots/puente-detail-desktop.png` / `stitchhub-detail-desktop.png`
+  - `references/desktop/about.png` vs `docs/screenshots/about-desktop.png`
+  - `references/desktop/contact.png` vs `docs/screenshots/contact-desktop.png`
+  - `references/mobile/secondary-overview.png` vs `docs/screenshots/work-mobile.png` / `about-mobile.png` / `contact-mobile.png`
+- Verified strict adherence to editorial neo-brutalist constraints: solid black borders (`2px`/`3px`), high-contrast offset box shadows (`2px 2px 0`/`3px 3px 0`), uppercase Space Grotesk / Space Mono typography, and authentic project media presentation without faux gradients or SaaS cards.
+
+### 8.7. Automated Verification Results
+
+| Quality Gate         | Tool / Command             | Result                                                            |
+| -------------------- | -------------------------- | ----------------------------------------------------------------- |
+| **Formatting**       | `npx prettier --check ...` | **PASS (0)** — All source files adhere to Prettier rules          |
+| **Linting**          | `npm run lint`             | **PASS (0)** — ESLint completed with 0 errors / 0 warnings        |
+| **Typecheck**        | `npm run typecheck`        | **PASS (0)** — TypeScript `tsc --noEmit` clean                    |
+| **Unit Tests**       | `npm test`                 | **PASS (0)** — 37 / 37 Vitest tests passing                       |
+| **Dead Code**        | `npm run knip`             | **PASS (0)** — 0 unused files, 0 unused exports, 0 unused types   |
+| **Production Build** | `npm run build`            | **PASS (0)** — Next.js 16.4.6 Turbopack generated 24 static pages |
+| **E2E Suite**        | `npm run test:e2e`         | **PASS (0)** — 13 / 13 Playwright tests passing                   |
+| **Design System**    | `npm run test:preview`     | **PASS (0)** — 5 / 5 Playwright preview tests passing             |
+| **Lighthouse CI**    | `npm run lighthouse`       | **PASS (0)** — Home: A11y 100, BP 100, SEO 100, Perf 88           |
+
+### 8.8. Remaining Limitations & Next Phase
+
+- **Developer Lab:** The Developer Lab remains an in-page preview widget (`#lab`) with the interactive Brutalist Button Builder. A dedicated subpage (`/[locale]/lab`) with expanded experiments is planned for Phase 09.
+- **Direct Email Channel:** Direct email remains safely unconfigured in production to prevent exposure of fixture emails, displaying the accessible noninteractive availability notice until owner-provided credentials are configured.
+- **Recommended Next Phase:** Phase 09 — Dedicated Developer Lab & Interactive Playground implementation.

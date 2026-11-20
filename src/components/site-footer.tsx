@@ -98,7 +98,9 @@ export function SiteFooter({ locale, variant = 'default' }: SiteFooterProps) {
                 : 'Built with design, code and intent.'}
             </p>
             <p className={styles.footerTagline}>
-              Editorial Neo-brutalism · StitchHub inspired
+              {es
+                ? 'Diseño, código y experiencias digitales.'
+                : 'Design, code and digital experiences.'}
             </p>
           </div>
         </div>

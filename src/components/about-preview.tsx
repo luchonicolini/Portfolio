@@ -62,6 +62,11 @@ export function AboutPreview({ locale }: { locale: string }) {
               {es ? 'ENFOQUE Y CAPACIDADES.' : 'APPROACH & CAPABILITIES.'}
             </h2>
           </div>
+          <div className={styles.sectionHeaderRight}>
+            <a className={styles.sectionBadge} href={`/${locale}/about`}>
+              {es ? 'VER MÁS' : 'VIEW MORE'} →
+            </a>
+          </div>
         </div>
 
         <div className={styles.aboutBanner}>
