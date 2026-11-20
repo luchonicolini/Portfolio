@@ -26,4 +26,5 @@ jobs:
       - run: npm run knip
       - run: npm run build
       - run: npm run test:e2e
+      - run: npm run test:preview
       - run: npm run lighthouse

@@ -21,4 +21,7 @@ test('Spanish and English production routes render and the full document passes 
   ).toBeVisible();
   const englishAccessibility = await new AxeBuilder({ page }).analyze();
   expect(englishAccessibility.violations).toEqual([]);
+
+  const previewResponse = await page.goto('/es/dev/design-system');
+  expect(previewResponse?.status()).toBe(404);
 });

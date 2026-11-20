@@ -1,0 +1,439 @@
+.preview {
+  min-height: 100vh;
+  color: var(--color-ink);
+}
+
+.skipLink {
+  position: absolute;
+  z-index: var(--z-overlay);
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: translateY(-180%);
+  border: var(--border-width) solid var(--color-ink);
+  padding: 0.75rem 1rem;
+  background: var(--color-primary);
+  color: var(--color-ink);
+  font-weight: var(--font-weight-bold);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.masthead {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  border-bottom: var(--border-width-heavy) solid var(--color-ink);
+}
+
+.brand {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--space-3);
+  color: inherit;
+  font-size: var(--type-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.05;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  min-width: 3.5rem;
+  min-height: 2.5rem;
+  place-items: center;
+  border: var(--border-width) solid var(--color-ink);
+  background: var(--color-primary);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  font-size: var(--type-body);
+  font-weight: var(--font-weight-heavy);
+}
+
+.headerTools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.previewMarker {
+  border: var(--border-width) solid var(--color-ink);
+  padding: 0.35rem 0.55rem;
+  background: var(--color-primary);
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.8fr);
+  align-items: end;
+  gap: var(--grid-gap);
+  padding-block: clamp(3.25rem, 8vw, 7rem);
+}
+
+.introTitle {
+  max-width: 11ch;
+  margin: 0;
+  font-size: var(--type-display);
+  font-weight: var(--font-weight-heavy);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.introTitle::after {
+  display: block;
+  width: min(44%, 13rem);
+  height: 0.45rem;
+  margin-top: var(--space-3);
+  background: var(--color-pink);
+  content: '';
+}
+
+.introSide {
+  display: grid;
+  gap: var(--space-4);
+  align-content: end;
+}
+
+.introSide p {
+  max-width: 36ch;
+  margin: 0;
+  font-size: var(--type-lead);
+  line-height: 1.45;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns-wide), minmax(0, 1fr));
+  gap: 0 var(--grid-gap);
+}
+
+.paletteSection {
+  grid-column: span 7;
+}
+
+.typeSection {
+  grid-column: span 5;
+}
+
+.structureSection,
+.componentsSection,
+.motionSection {
+  grid-column: 1 / -1;
+}
+
+.surfaceSection {
+  grid-column: span 7;
+}
+
+.statesSection {
+  grid-column: span 5;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.swatch {
+  display: grid;
+  min-height: 7rem;
+  align-content: space-between;
+  gap: var(--space-3);
+  border: var(--border-width) solid var(--color-ink);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--type-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.swatchName {
+  max-width: 9ch;
+}
+
+.tokenCode {
+  display: block;
+  overflow-wrap: anywhere;
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+  font-weight: var(--font-weight-regular);
+}
+
+.inkSwatch {
+  color: var(--color-canvas);
+}
+
+.typeSamples {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.typeSample {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.typeLabel {
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+}
+
+.typeWeights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  border-top: var(--border-width-thin) solid var(--color-ink);
+  padding-top: var(--space-3);
+  font-size: var(--type-sm);
+}
+
+.weightRegular {
+  font-weight: var(--font-weight-regular);
+}
+
+.weightMedium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weightBold {
+  font-weight: var(--font-weight-bold);
+}
+
+.structureGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.65fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+.spacingList {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.spacingRow {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) 4rem;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+}
+
+.spacingBar {
+  height: 1rem;
+  border: var(--border-width-thin) solid var(--color-ink);
+  background: var(--color-primary);
+}
+
+.gridDiagram {
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns-wide), minmax(0, 1fr));
+  gap: var(--space-2);
+  align-content: start;
+  min-height: 8rem;
+  border: var(--border-width) solid var(--color-ink);
+  padding: var(--space-3);
+  background: var(--color-canvas);
+}
+
+.gridCell {
+  min-height: 5rem;
+  border: var(--border-width-thin) solid var(--color-ink);
+  background: var(--color-mint);
+}
+
+.componentRows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--grid-gap);
+}
+
+.controlPanel {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.controlRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.stateNote {
+  margin: 0;
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+  line-height: 1.5;
+}
+
+.surfaceDemo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--grid-gap);
+}
+
+.textureFrame {
+  --image-frame-background: var(--color-primary);
+}
+
+.textureFrame img {
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+.surfaceNote {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.surfaceNote p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.surfaceAccents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.statesDemo {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.buttonStateList {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.buttonStateRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.dialogLauncher {
+  display: inline-flex;
+}
+
+.motionSurface {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
+  align-items: start;
+  gap: var(--grid-gap);
+}
+
+.motionGraphic {
+  max-width: 27rem;
+  margin-inline: auto;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+.motionGraphic img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  border-top: var(--border-width-heavy) solid var(--color-ink);
+  padding-block: var(--space-6);
+  font-family: var(--font-space-mono), monospace;
+  font-size: var(--type-xs);
+}
+
+@media (max-width: 56rem) {
+  .paletteSection,
+  .typeSection,
+  .surfaceSection,
+  .statesSection {
+    grid-column: 1 / -1;
+  }
+
+  .structureGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 42rem) {
+  .masthead {
+    min-height: 4rem;
+    align-items: flex-start;
+    padding-block: var(--space-3);
+  }
+
+  .headerTools {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .previewMarker {
+    display: none;
+  }
+
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-6);
+    padding-block: var(--space-12);
+  }
+
+  .introTitle {
+    max-width: 10ch;
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .sections {
+    grid-template-columns: repeat(var(--grid-columns-compact), minmax(0, 1fr));
+  }
+
+  .swatches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .swatch {
+    min-height: 6rem;
+  }
+
+  .gridDiagram {
+    grid-template-columns: repeat(var(--grid-columns-compact), minmax(0, 1fr));
+  }
+
+  .gridCell {
+    min-height: 3.25rem;
+  }
+
+  .componentRows,
+  .surfaceDemo,
+  .motionSurface {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .motionGraphic {
+    max-width: 18rem;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+}

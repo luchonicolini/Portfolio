@@ -8,13 +8,59 @@
   --color-mint: #4ecdc4;
   --color-coral: #ff6b6b;
   --color-pink: #ff70a6;
+  --color-disabled: #e7e7e4;
+  --color-disabled-ink: #454545;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 700;
+
+  --type-xs: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+  --type-sm: clamp(0.875rem, 0.83rem + 0.18vw, 0.9375rem);
+  --type-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --type-lead: clamp(1.125rem, 1rem + 0.55vw, 1.375rem);
+  --type-title: clamp(1.5rem, 1.12rem + 1.65vw, 2.25rem);
+  --type-display: clamp(2.5rem, 1.25rem + 5.2vw, 5.5rem);
+
   --space-unit: 0.25rem;
+  --space-1: calc(var(--space-unit) * 1);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-12: calc(var(--space-unit) * 12);
+  --space-16: calc(var(--space-unit) * 16);
+
+  --container-reading: 68ch;
+  --container-content: 80rem;
+  --grid-columns-wide: 12;
+  --grid-columns-compact: 4;
+  --grid-gap: clamp(1rem, 2.2vw, 2rem);
+
+  --border-width-thin: 1px;
   --border-width: 2px;
+  --border-width-heavy: 3px;
   --shadow-hard-sm: 4px 4px 0 var(--color-ink);
   --shadow-hard-md: 6px 6px 0 var(--color-ink);
   --shadow-hard-lg: 8px 8px 0 var(--color-ink);
   --focus-outline: 3px solid var(--color-ink);
   --focus-offset: 3px;
+
+  --motion-fast: 140ms;
+  --motion-base: 220ms;
+  --motion-slow: 280ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-overlay: 80;
+  --z-dialog: 90;
 }
 
 @theme inline {
@@ -26,6 +72,7 @@
   --color-pink: var(--color-pink);
   --font-sans: var(--font-space-grotesk);
   --font-mono: var(--font-space-mono);
+  --spacing: var(--space-unit);
 }
 
 * {
@@ -34,14 +81,29 @@
 html {
   min-width: 320px;
   background: var(--color-canvas);
+  scrollbar-color: var(--color-ink) var(--color-canvas);
 }
 body {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   margin: 0;
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-space-grotesk), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  background-image: url('/artwork/paper-texture.webp');
+  background-repeat: repeat;
+  background-size: 192px 192px;
+  content: '';
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
 }
 
 :focus-visible {
@@ -79,6 +141,25 @@ body {
   font-size: 1rem;
 }
 
+.button-press {
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.button-press:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--color-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .graphic-tilt:hover {
+    transform: rotate(-1.5deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -87,5 +168,10 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .button-press:active:not(:disabled),
+  .graphic-tilt:hover {
+    transform: none;
   }
 }

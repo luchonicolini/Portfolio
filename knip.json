@@ -4,6 +4,5 @@
     "src/**/*.{ts,tsx,css}",
     "tests/**/*.{ts,tsx}",
     "e2e/**/*.{ts,tsx}"
-  ],
-  "ignoreDependencies": ["lucide-react", "motion"]
+  ]
 }

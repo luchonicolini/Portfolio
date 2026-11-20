@@ -44,7 +44,10 @@ export default async function LocaleLayout({
       <body className={`${spaceGrotesk.variable} ${spaceMono.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
-          {process.env.NODE_ENV === 'development' ? <ReactGrab /> : null}
+          {process.env.NODE_ENV === 'development' &&
+          process.env.NEXT_PUBLIC_REACT_GRAB !== 'false' ? (
+            <ReactGrab />
+          ) : null}
         </NextIntlClientProvider>
       </body>
     </html>
