@@ -10,9 +10,20 @@ export function Navigation({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const es = locale === 'es';
-  const labels = es
-    ? ['Proyectos', 'Sobre mí', 'Lab', 'Contacto']
-    : ['Work', 'About', 'Lab', 'Contact'];
+
+  const navItems = es
+    ? [
+        { label: 'Proyectos', href: '#work' },
+        { label: 'Sobre mí', href: '#about' },
+        { label: 'Lab', href: '#lab' },
+        { label: 'Contacto', href: '#contact' }
+      ]
+    : [
+        { label: 'Work', href: '#work' },
+        { label: 'About', href: '#about' },
+        { label: 'Lab', href: '#lab' },
+        { label: 'Contact', href: '#contact' }
+      ];
 
   function close() {
     setOpen(false);
@@ -79,17 +90,15 @@ export function Navigation({ locale }: { locale: string }) {
           }}
         >
           <div className={styles.navLinks}>
-            {labels.map((label, index) => (
-              <span
-                key={label}
-                className={`${styles.navItem} ${index === 0 ? styles.navItemActive : ''}`}
-                aria-disabled="true"
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className={styles.navLink}
+                onClick={() => setOpen(false)}
               >
-                {label}{' '}
-                <small className={styles.navBadge}>
-                  {es ? 'Próximamente' : 'Coming soon'}
-                </small>
-              </span>
+                {item.label}
+              </a>
             ))}
           </div>
           <div className={styles.navRight}>

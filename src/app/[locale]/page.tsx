@@ -4,6 +4,11 @@ import { ArrowRight, Download } from 'lucide-react';
 import { routing } from '@/i18n/routing';
 import { Container } from '@/components/design-system/components';
 import { Navigation } from '@/components/home-navigation';
+import { SelectedWork } from '@/components/selected-work';
+import { AboutPreview } from '@/components/about-preview';
+import { LabPreview } from '@/components/lab-preview';
+import { ContactSection } from '@/components/contact-section';
+import { HomeFooter } from '@/components/home-footer';
 import styles from '@/components/home.module.css';
 
 export function generateStaticParams() {
@@ -44,10 +49,9 @@ export default async function HomePage({
                   : 'I build digital products with design, code and intent.'}
               </p>
               <div className={styles.actions}>
-                <button
+                <a
+                  href="#work"
                   className={`${styles.action} ${styles.primary}`}
-                  disabled
-                  type="button"
                 >
                   <span className={styles.actionText}>
                     {es ? 'VER PROYECTOS' : 'EXPLORE WORK'}
@@ -57,10 +61,7 @@ export default async function HomePage({
                       strokeWidth={2.5}
                     />
                   </span>
-                  <small className={styles.actionBadge}>
-                    {es ? 'Próximamente' : 'Coming soon'}
-                  </small>
-                </button>
+                </a>
                 <button className={styles.action} disabled type="button">
                   <span className={styles.actionText}>
                     <Download aria-hidden="true" size={18} strokeWidth={2.5} />
@@ -99,7 +100,13 @@ export default async function HomePage({
             <div className={styles.stripHazard} aria-hidden="true" />
           </div>
         </div>
+
+        <SelectedWork locale={locale} />
+        <AboutPreview locale={locale} />
+        <LabPreview locale={locale} />
+        <ContactSection locale={locale} />
       </main>
+      <HomeFooter locale={locale} />
     </>
   );
 }

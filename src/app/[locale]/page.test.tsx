@@ -4,8 +4,9 @@ import { NextIntlClientProvider } from 'next-intl';
 import { Navigation } from '../../components/home-navigation';
 
 vi.mock('next/navigation', () => ({ usePathname: () => '/es' }));
+
 describe('navigation', () => {
-  it('identifies the menu and marks unavailable destinations', () => {
+  it('identifies the menu, active section links, and disabled CV destination', () => {
     render(
       <NextIntlClientProvider locale="es" messages={{}}>
         <Navigation locale="es" />
@@ -15,9 +16,22 @@ describe('navigation', () => {
       'aria-expanded',
       'false'
     );
-    expect(screen.getByText('Proyectos')).toHaveAttribute(
-      'aria-disabled',
-      'true'
+    expect(screen.getByRole('link', { name: 'Proyectos' })).toHaveAttribute(
+      'href',
+      '#work'
     );
+    expect(screen.getByRole('link', { name: 'Sobre mí' })).toHaveAttribute(
+      'href',
+      '#about'
+    );
+    expect(screen.getByRole('link', { name: 'Lab' })).toHaveAttribute(
+      'href',
+      '#lab'
+    );
+    expect(screen.getByRole('link', { name: 'Contacto' })).toHaveAttribute(
+      'href',
+      '#contact'
+    );
+    expect(screen.getByText(/CV ↗/)).toHaveAttribute('aria-disabled', 'true');
   });
 });
