@@ -1,0 +1,725 @@
+/* ========================================================
+   About Page Styles — Editorial Neo-brutalism
+   ======================================================== */
+
+.aboutPage {
+  padding-block: clamp(2rem, 5vw, 4rem);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.introLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.headlineRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.headline {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 0;
+  position: relative;
+}
+
+.rays {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--color-ink);
+}
+
+.rolePill {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  background: #f0eee6;
+  border: 2px solid var(--color-ink);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+}
+
+.bio {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #222222;
+  margin: 0;
+  max-width: 52ch;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  background: var(--color-primary);
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.btnPrimary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+.btnPrimary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-ink);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  background: #ffffff;
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.btnSecondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+.btnDisabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  background: #e5e2da;
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-ink);
+  opacity: 0.85;
+  cursor: default;
+}
+
+.badgeSmall {
+  background: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  margin-left: 0.35rem;
+}
+
+/* Typographic / Geometric Neo-brutalist Avatar */
+.portraitComposition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.avatarCard {
+  width: min(100%, 340px);
+  border: 3px solid var(--color-ink);
+  box-shadow: 6px 6px 0 var(--color-ink);
+  background: var(--color-primary);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transform: rotate(-1.5deg);
+  position: relative;
+}
+
+.avatarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatarMonogram {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+}
+
+.avatarDots {
+  display: grid;
+  grid-template-columns: repeat(3, 8px);
+  gap: 4px;
+}
+
+.avatarDot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-ink);
+}
+
+.avatarBody {
+  border-top: 2px dashed var(--color-ink);
+  padding-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.avatarName {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.avatarTagline {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+}
+
+.avatarPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.avatarPill {
+  background: #ffffff;
+  border: 1.5px solid var(--color-ink);
+  padding: 0.15rem 0.5rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Journey Timeline Box */
+.journeyCard {
+  border: 3px solid var(--color-ink);
+  box-shadow: 6px 6px 0 var(--color-ink);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.journeyHeader {
+  background: var(--color-primary);
+  border-bottom: 3px solid var(--color-ink);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journeyTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.journeyHazard {
+  width: 50px;
+  height: 18px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-ink),
+    var(--color-ink) 5px,
+    var(--color-primary) 5px,
+    var(--color-primary) 10px
+  );
+}
+
+.timelineList {
+  list-style: none;
+  margin: 0;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.timelineList::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  width: 2px;
+  background: var(--color-ink);
+}
+
+.timelineItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineNode {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--color-ink);
+  background: #ffffff;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+.timelineItemActive .timelineNode {
+  background: var(--color-primary);
+}
+
+.timelineYearBadge {
+  background: #f0eee6;
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  flex-shrink: 0;
+  min-width: 56px;
+  text-align: center;
+}
+
+.timelineYearBadgeActive {
+  background: var(--color-primary);
+}
+
+.timelineText {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.925rem;
+  line-height: 1.45;
+  color: #222222;
+  margin: 0;
+}
+
+/* Middle Section: 3-Column Pillars Grid */
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.pillarCard {
+  border: 3px solid var(--color-ink);
+  box-shadow: 5px 5px 0 var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.cardMint {
+  background: #eefcf8;
+}
+
+.cardCream {
+  background: #fdfbf7;
+}
+
+.cardPink {
+  background: #fff3f8;
+}
+
+.pillarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pillarTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pillarSubtitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #444444;
+  margin: 0 0 1.25rem;
+}
+
+/* Tech Stack Grid */
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
+.techPillBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  background: #ffffff;
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+/* Process Steps */
+.processList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.processItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.processIconBox {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconYellow {
+  background: var(--color-primary);
+}
+
+.iconPink {
+  background: var(--color-accent-pink);
+}
+
+.iconMint {
+  background: var(--color-accent-mint);
+}
+
+.iconCoral {
+  background: var(--color-accent-coral);
+}
+
+.processCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.processStepTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.processStepDesc {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.825rem;
+  line-height: 1.35;
+  color: #444444;
+  margin: 0;
+}
+
+/* Inclusion and Currently Section */
+.inclusionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inclusionText {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  color: #222222;
+  margin: 0;
+}
+
+.currentlyBox {
+  border: 2px solid var(--color-ink);
+  background: #ffffff;
+  padding: 0.85rem 1rem;
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+.currentlyHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.currentlyTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.currentlyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.currentlyItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.825rem;
+  color: #333333;
+}
+
+.currentlyDotMint {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-accent-mint);
+  flex-shrink: 0;
+}
+
+.currentlyDotYellow {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.currentlyDotPink {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-accent-pink);
+  flex-shrink: 0;
+}
+
+/* Bottom CV Banner */
+.cvBanner {
+  border: 3px solid var(--color-ink);
+  box-shadow: 6px 6px 0 var(--color-ink);
+  background: var(--color-primary);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.cvBannerLeft {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.cvHazard {
+  width: 32px;
+  height: 48px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-ink),
+    var(--color-ink) 7px,
+    var(--color-primary) 7px,
+    var(--color-primary) 14px
+  );
+  flex-shrink: 0;
+}
+
+.cvTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.cvDesc {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 45ch;
+  border-left: 2px solid var(--color-ink);
+  padding-left: 1.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .introLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pillarsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cvDesc {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .aboutPage {
+    padding-block: 1.5rem;
+  }
+
+  .headline {
+    font-size: clamp(2.25rem, 9vw, 3.5rem);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary,
+  .btnSecondary,
+  .btnDisabled {
+    justify-content: center;
+  }
+
+  .cvBanner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .cvBannerLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .cvHazard {
+    display: none;
+  }
+}

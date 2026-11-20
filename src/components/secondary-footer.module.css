@@ -1,0 +1,212 @@
+.footer {
+  border-top: 3px solid var(--color-ink);
+  background: var(--color-canvas);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+.footerInner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.secondaryBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--color-ink);
+  background: var(--color-primary);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  font-family: var(--font-space-mono), monospace;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+.bannerBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bannerLogo {
+  background: #ffffff;
+  border: 1.5px solid var(--color-ink);
+  padding: 0.15rem 0.4rem;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.bannerPillars {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.bannerHazard {
+  width: 48px;
+  height: 18px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-ink),
+    var(--color-ink) 5px,
+    var(--color-primary) 5px,
+    var(--color-primary) 10px
+  );
+  flex-shrink: 0;
+}
+
+.footerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.logo {
+  background: var(--color-primary);
+  border: 2px solid var(--color-ink);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  padding: 0.2rem 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.brandText {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.footerNav {
+  display: flex;
+}
+
+.footerNavList {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.footerNavLink {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: color var(--motion-fast) var(--ease-out);
+}
+
+.footerNavLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+  background: var(--color-canvas);
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.backToTop:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+.footerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-top: 2px dashed rgba(0, 0, 0, 0.2);
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.8rem;
+  color: #333333;
+  margin: 0;
+}
+
+.footerTagline {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.75rem;
+  color: #555555;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+  .secondaryBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .bannerPillars {
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+
+  .bannerHazard {
+    display: none;
+  }
+
+  .footerTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .footerNavList {
+    gap: 0.75rem 1rem;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
