@@ -49,6 +49,40 @@ test('localized home is accessible and responsive with all sections', async ({
   expect(response?.status()).toBe(404);
 });
 
+test('production contact configuration does not expose test fixtures or mock email', async ({
+  page
+}) => {
+  for (const locale of ['es', 'en']) {
+    await page.goto(`/${locale}`);
+
+    // Verify contact section is present
+    const contactSection = page.locator('#contact');
+    await expect(contactSection).toBeVisible();
+
+    // Verify contact@example.com and test-email controls are completely absent
+    const pageContent = await page.content();
+    expect(pageContent).not.toContain('contact@example.com');
+    expect(pageContent).not.toContain('Copiar email de prueba');
+    expect(pageContent).not.toContain('Copy test email');
+    expect(pageContent).not.toContain('Fixture de desarrollo');
+    expect(pageContent).not.toContain('Development fixture');
+
+    // Verified GitHub action must be present
+    const githubLink = contactSection.locator(
+      'a[href="https://github.com/luchonicolini"]'
+    );
+    await expect(githubLink).toBeVisible();
+
+    // Unconfigured channels (LinkedIn, CV) must not render active links
+    await expect(
+      contactSection.getByRole('link', { name: /LinkedIn/i })
+    ).toHaveCount(0);
+    await expect(contactSection.getByRole('link', { name: /CV/i })).toHaveCount(
+      0
+    );
+  }
+});
+
 test('mobile menu works with keyboard, navigation anchors and language switch', async ({
   page
 }) => {

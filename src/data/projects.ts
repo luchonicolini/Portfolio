@@ -20,9 +20,10 @@ interface ProjectLocalizedContent {
 
 interface ProjectImage {
   src: string;
-  alt: string;
   width: number;
   height: number;
+  altEs: string;
+  altEn: string;
 }
 
 export interface Project {
@@ -50,38 +51,47 @@ export const projects: Project[] = [
     category: 'mobile',
     status: 'active-mvp',
     accentColor: 'mint',
-    technologies: ['Flutter', 'Dart', 'Riverpod', 'STT/TTS', 'Offline-first'],
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Riverpod',
+      'STT / TTS',
+      'Persistencia local'
+    ],
     repositoryUrl: 'https://github.com/luchonicolini/Puente_Flutter',
     image: {
       src: '/projects/puente/preview.png',
-      alt: 'Puente — Pantalla de incorporación y comunicación accesible',
-      width: 1080,
-      height: 1080
+      width: 280,
+      height: 285,
+      altEs:
+        'Puente — Ilustración original de incorporación y comunicación accesible',
+      altEn:
+        'Puente — Original onboarding illustration for accessible communication'
     },
     es: {
       title: 'Puente',
-      tagline: 'Accesibilidad y comunicación sin barreras',
+      tagline: 'Comunicación accesible y asistencia en conversaciones',
       description:
-        'Aplicación móvil en Flutter diseñada para que personas sordas o con dificultades auditivas se desenvuelvan con mayor autonomía en situaciones cotidianas, sin almacenar audio ni depender de servidores externos.',
+        'Aplicación móvil en Flutter diseñada para facilitar la comunicación cotidiana a personas sordas o con dificultades auditivas, con persistencia local de preferencias y ciclo de vida de audio controlado (STT/TTS bajo demanda, sin almacenamiento de audio en servidores externos).',
       categoryLabel: 'Mobile / Accesibilidad',
       statusLabel: 'MVP funcional en desarrollo activo',
       highlights: [
         'Arquitectura por capas con Riverpod',
-        'Ciclo de vida y privacidad de audio estricto',
-        'Detección y contrastación segura de datos'
+        'Ciclo de vida y privacidad de audio controlado',
+        'Persistencia local de frases frecuentes'
       ]
     },
     en: {
       title: 'Puente',
-      tagline: 'Inclusive communication and accessibility',
+      tagline: 'Accessible communication and conversational assistance',
       description:
-        'Flutter mobile application designed to bridge communication gaps for deaf and hard-of-hearing users in daily interactions, completely offline-first with zero external audio storage.',
+        'Flutter mobile application designed to bridge communication gaps for deaf and hard-of-hearing users in daily interactions, emphasizing local preferences and explicit audio lifecycle controls (on-demand STT/TTS without external audio retention).',
       categoryLabel: 'Mobile / Accessibility',
       statusLabel: 'Functional MVP in active development',
       highlights: [
         'Layered architecture with Riverpod',
-        'Strict audio lifecycle & privacy controls',
-        'Safe structured data confirmation'
+        'Explicit audio lifecycle and privacy controls',
+        'Local storage for frequent quick phrases'
       ]
     }
   },
@@ -97,33 +107,35 @@ export const projects: Project[] = [
     repositoryUrl: 'https://github.com/luchonicolini/DolarToApp',
     image: {
       src: '/projects/dolarto/preview.png',
-      alt: 'DolarTo — Captura de cotizaciones en tiempo real en iOS',
-      width: 383,
-      height: 830
+      width: 966,
+      height: 1812,
+      altEs:
+        'DolarTo — Captura de pantalla de cotizaciones en aplicación nativa iOS',
+      altEn: 'DolarTo — Screenshot of currency exchange rates in native iOS app'
     },
     es: {
       title: 'DolarTo',
-      tagline: 'Cotizaciones del dólar en tiempo real',
+      tagline: 'Consulta y comparación de cotizaciones del dólar',
       description:
-        'Aplicación nativa para iOS construida en SwiftUI con arquitectura MVVM para consultar y comparar cotizaciones del dólar en Argentina mediante DolarApi, con foco en simplicidad y velocidad.',
+        'Aplicación nativa para iOS construida en SwiftUI con arquitectura MVVM para consultar y comparar cotizaciones del dólar en Argentina mediante la API pública DolarApi. Código y capturas verificados; enlace público de App Store pendiente de confirmación.',
       categoryLabel: 'iOS Nativo / SwiftUI',
-      statusLabel: 'Lanzamiento iOS / SwiftUI',
+      statusLabel: 'Lanzamiento iOS / SwiftUI (código verificado)',
       highlights: [
         'Arquitectura MVVM desacoplada',
-        'Integración reactiva con DolarApi',
+        'Integración con API pública DolarApi',
         'Interfaz nativa fluida y ligera'
       ]
     },
     en: {
       title: 'DolarTo',
-      tagline: 'Real-time currency exchange rates',
+      tagline: 'USD currency exchange rate tracking',
       description:
-        'Native iOS application built with SwiftUI and MVVM architecture to track and compare Argentine peso to USD exchange rates via DolarApi, optimized for clarity and speed.',
+        'Native iOS application built with SwiftUI and MVVM architecture to track and compare Argentine exchange rates using the public DolarApi service. Source code and UI captures verified; public App Store listing link pending confirmation.',
       categoryLabel: 'Native iOS / SwiftUI',
-      statusLabel: 'Native iOS Release',
+      statusLabel: 'Native iOS Release (Code verified)',
       highlights: [
-        'Clean MVVM architecture',
-        'Reactive DolarApi integration',
+        'Decoupled MVVM architecture',
+        'Public DolarApi integration',
         'Lightweight native interface'
       ]
     }
@@ -147,9 +159,11 @@ export const projects: Project[] = [
     liveUrl: 'https://stitch-hub-one.vercel.app',
     image: {
       src: '/projects/stitchhub/homepage.png',
-      alt: 'StitchHub — Plataforma de descubrimiento visual de interfaces',
-      width: 1280,
-      height: 720
+      width: 1440,
+      height: 1000,
+      altEs:
+        'StitchHub — Captura de pantalla de la página principal de descubrimiento visual',
+      altEn: 'StitchHub — Screenshot of visual UI discovery homepage'
     },
     es: {
       title: 'StitchHub',
@@ -193,31 +207,30 @@ export const projects: Project[] = [
       'Playwright',
       'Vitest'
     ],
-    repositoryUrl: 'https://github.com/luchonicolini/Oportunidades_laborales',
     es: {
       title: 'LeadRadar',
-      tagline: 'Motor de prospección B2B y auditoría web',
+      tagline: 'Arquitectura de prospección B2B y auditoría técnica',
       description:
-        'Sistema privado de prospección automatizada y auditoría técnica de sitios web para detección de oportunidades comerciales, con cola de trabajo distribuida, deduplicación y controles SSRF.',
+        'Caso de estudio de arquitectura sobre un sistema interno de prospección y auditoría web, documentando una cola de tareas atómica con heartbeat/fencing, deduplicación y controles pre-conexión frente a SSRF.',
       categoryLabel: 'Ingeniería / Automatización',
       statusLabel: 'Herramienta interna / Caso técnico',
       highlights: [
-        'Cola atómica con heartbeat y fencing',
+        'Cola atómica documentada con heartbeat',
         'Auditoría automatizada con Playwright',
-        'Controles de seguridad pre-conexión SSRF'
+        'Controles preventivos de red contra SSRF'
       ]
     },
     en: {
       title: 'LeadRadar',
-      tagline: 'B2B prospecting and automated web audit',
+      tagline: 'B2B prospecting and automated technical audit architecture',
       description:
-        'Private B2B prospecting and automated technical website audit platform featuring distributed background workers, prospect deduplication, and pre-connection SSRF safeguards.',
+        'Engineering case study of an internal prospecting and website audit system, documenting an atomic task queue with heartbeat/fencing, prospect deduplication, and pre-connection SSRF safeguards.',
       categoryLabel: 'Engineering / Automation',
-      statusLabel: 'Internal System / Case Study',
+      statusLabel: 'Internal System / Technical Case Study',
       highlights: [
-        'Atomic queue with heartbeat fencing',
+        'Documented atomic queue with heartbeat',
         'Automated audits with Playwright',
-        'Robust SSRF security controls'
+        'Pre-connection network SSRF safeguards'
       ]
     }
   },
@@ -234,15 +247,17 @@ export const projects: Project[] = [
     liveUrl: 'https://rialelectronic-demo.vercel.app',
     image: {
       src: '/projects/rial-electronica/preview.webp',
-      alt: 'Rial Electrónica — Vista previa del catálogo de productos',
-      width: 600,
-      height: 400
+      width: 800,
+      height: 540,
+      altEs:
+        'Rial Electrónica — Captura de pantalla de la demostración de catálogo comercial',
+      altEn: 'Rial Electrónica — Screenshot of commercial catalog demonstration'
     },
     es: {
       title: 'Rial Electrónica',
-      tagline: 'Demostración de rediseño de catálogo comercial',
+      tagline: 'Demostración independiente de catálogo comercial',
       description:
-        'Demostración independiente e interactiva de rediseño para catálogo de productos electrónicos, con navegación responsiva, derivación de cotización a WhatsApp y cotizador dinámico.',
+        'Demostración interactiva e independiente de rediseño para catálogo de productos electrónicos (no comisionada por la marca), con navegación responsiva, derivación de cotización a WhatsApp y catálogo interactivo.',
       categoryLabel: 'Diseño Web / Demostración',
       statusLabel: 'Demostración independiente no oficial',
       highlights: [
@@ -253,9 +268,9 @@ export const projects: Project[] = [
     },
     en: {
       title: 'Rial Electrónica',
-      tagline: 'Commercial catalog redesign demonstration',
+      tagline: 'Independent commercial catalog redesign demo',
       description:
-        'Independent, unofficial e-commerce catalog redesign demo featuring a responsive product grid, animated interactions, and direct WhatsApp quotation handoff.',
+        'Independent, unofficial e-commerce catalog redesign demo for consumer electronics (not an official client engagement), featuring a responsive product grid, animated interactions, and direct WhatsApp quotation handoff.',
       categoryLabel: 'Web Design / Demo',
       statusLabel: 'Independent Unofficial Demo',
       highlights: [
@@ -277,28 +292,28 @@ export const projects: Project[] = [
     repositoryUrl: 'https://github.com/luchonicolini/QuoteFlow_Flutter',
     es: {
       title: 'ScopeGuard',
-      tagline: 'Control de alcance y presupuestos para freelancers',
+      tagline: 'Fundación móvil para estructuración de alcance técnico',
       description:
-        'Herramienta móvil en desarrollo orientada a profesionales independientes y desarrolladores para definir alcances técnicos, documentar cambios y gestionar aprobaciones sin fricción.',
+        'Prototipo demostrativo local en fase inicial (Material 3 y Riverpod) para estructurar alcances de trabajo y solicitudes de cambio. Flujos de sincronización remota y portal de aprobación de clientes planificados.',
       categoryLabel: 'Mobile / En desarrollo',
-      statusLabel: 'En desarrollo (fundación demostrativa)',
+      statusLabel: 'En desarrollo (fundación demostrativa local)',
       highlights: [
         'Diseño mobile-first en Material 3',
-        'Gestión reactiva de estado con Riverpod',
-        'Registro y control de modificaciones'
+        'Estado reactivo con Riverpod',
+        'Aprobaciones y backend planificados'
       ]
     },
     en: {
       title: 'ScopeGuard',
-      tagline: 'Scope definition and change tracking for freelancers',
+      tagline: 'Mobile foundation for project scope structuring',
       description:
-        'Early-stage mobile product tailored for independent contractors and developers to define project scope, document change requests, and streamline client sign-offs.',
+        'Early-stage local prototype (Material 3 & Riverpod) demonstrating project scope structuring. Remote persistence and client approval workflows are planned.',
       categoryLabel: 'Mobile / In Development',
-      statusLabel: 'In Development (Early Foundation)',
+      statusLabel: 'In Development (Local Prototype)',
       highlights: [
         'Mobile-first Material 3 UI',
         'Reactive state with Riverpod',
-        'Scope and change tracking model'
+        'Client sign-off workflow planned'
       ]
     }
   }

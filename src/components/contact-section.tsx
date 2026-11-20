@@ -9,18 +9,18 @@ import styles from './home.module.css';
 export function ContactSection({ locale }: { locale: string }) {
   const es = locale === 'es';
   const [copied, setCopied] = useState(false);
-
-  // Email to use for clipboard copying in test or when configured
-  const activeEmail = contactConfig.email || contactConfig.emailFixture;
-  const isFixture = !contactConfig.email;
+  const [copyError, setCopyError] = useState(false);
 
   async function handleCopyEmail() {
+    if (!contactConfig.email) return;
     try {
-      await navigator.clipboard.writeText(activeEmail);
+      await navigator.clipboard.writeText(contactConfig.email);
       setCopied(true);
+      setCopyError(false);
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      // Fallback
+      setCopyError(true);
+      setTimeout(() => setCopyError(false), 2500);
     }
   }
 
@@ -62,13 +62,22 @@ export function ContactSection({ locale }: { locale: string }) {
                 <ArrowUpRight size={18} aria-hidden="true" />
               </a>
 
-              {/* Email Button / Copy Fixture */}
-              {isFixture ? (
-                <div className={styles.emailFixtureWrapper}>
+              {/* Verified Email Action (rendered only when valid email is configured) */}
+              {contactConfig.email ? (
+                <div className={styles.emailWrapper}>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
                     className={`${styles.contactActionBtn} ${styles.btnSecondary}`}
+                    aria-label={
+                      copied
+                        ? es
+                          ? 'Email copiado'
+                          : 'Email copied'
+                        : es
+                          ? `Copiar email: ${contactConfig.email}`
+                          : `Copy email: ${contactConfig.email}`
+                    }
                   >
                     {copied ? (
                       <>
@@ -81,41 +90,64 @@ export function ContactSection({ locale }: { locale: string }) {
                       <>
                         <Mail size={20} aria-hidden="true" />
                         <span className={styles.contactBtnText}>
-                          {es ? 'Copiar email de prueba' : 'Copy test email'}
+                          {contactConfig.email}
                         </span>
                         <Copy size={16} aria-hidden="true" />
                       </>
                     )}
                   </button>
-                  <small className={styles.fixtureNotice}>
-                    {es
-                      ? 'Fixture de desarrollo (contact@example.com) · Dirección oficial pendiente'
-                      : 'Development fixture (contact@example.com) · Official address pending'}
-                  </small>
+                  <div role="status" aria-live="polite" className="sr-only">
+                    {copied &&
+                      (es
+                        ? 'Dirección de correo electrónico copiada al portapapeles'
+                        : 'Email address copied to clipboard')}
+                    {copyError &&
+                      (es
+                        ? 'No se pudo copiar automáticamente. Por favor seleccioná y copiá el texto manualmente.'
+                        : 'Automatic copy failed. Please select and copy text manually.')}
+                  </div>
                 </div>
               ) : (
+                /* Noninteractive availability notice when direct email is unconfigured */
+                <div className={styles.contactNotice}>
+                  <p className={styles.contactNoticeBadge}>
+                    {es ? 'CANAL DIRECTO' : 'DIRECT CHANNEL'}
+                  </p>
+                  <p className={styles.contactNoticeText}>
+                    {es
+                      ? 'Canal de contacto directo por email disponible a la brevedad. Por consultas o propuestas técnicas, podés conectar a través de mi perfil verificado de GitHub.'
+                      : 'Direct email contact channel opening soon. For inquiries or technical proposals, please connect via my verified GitHub profile.'}
+                  </p>
+                </div>
+              )}
+
+              {/* LinkedIn Action (rendered only when valid owner-approved value exists) */}
+              {contactConfig.linkedinUrl && (
                 <a
-                  href={`mailto:${contactConfig.email}`}
+                  href={contactConfig.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`${styles.contactActionBtn} ${styles.btnSecondary}`}
                 >
-                  <Mail size={20} aria-hidden="true" />
-                  <span className={styles.contactBtnText}>
-                    {contactConfig.email}
-                  </span>
+                  <span className={styles.contactBtnText}>LinkedIn</span>
                   <ArrowUpRight size={18} aria-hidden="true" />
                 </a>
               )}
 
-              {/* LinkedIn Placeholder */}
-              <span
-                className={`${styles.contactActionBtn} ${styles.btnDisabled}`}
-                aria-disabled="true"
-              >
-                <span className={styles.contactBtnText}>LinkedIn</span>
-                <small className={styles.actionBadge}>
-                  {es ? 'Próximamente' : 'Coming soon'}
-                </small>
-              </span>
+              {/* CV Action (rendered only when valid owner-approved value exists) */}
+              {contactConfig.cvUrl && (
+                <a
+                  href={contactConfig.cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.contactActionBtn} ${styles.btnSecondary}`}
+                >
+                  <span className={styles.contactBtnText}>
+                    {es ? 'Descargar CV' : 'Download CV'}
+                  </span>
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              )}
             </div>
           </div>
         </div>

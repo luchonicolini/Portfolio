@@ -1,87 +1,77 @@
-# Phase 04 — Complete Home Implementation Report
+# Phase 04 & 04.1 — Complete Home Implementation & Review Report
 
 **Date:** 2026-11-20  
 **Repository:** https://github.com/luchonicolini/Portfolio  
-**Starting Commit:** `a74ec70`  
-**Scope:** Complete implementation and verification of the editorial neo-brutalist personal portfolio Home page for Luciano Nicolini, including Selected Work, About preview, Developer Lab interactive preview, Contact section, compact Footer, and navigation integration.
+**Starting Commit:** `a74ec70` (Phase 04 start) → `f1987f8` (Phase 04 base)  
+**Scope:** Complete implementation, code review, hardening, and verification of the editorial neo-brutalist personal portfolio Home page for Luciano Nicolini, including Selected Work modular cards, About preview, Developer Lab interactive preview, hardened Contact section, compact Footer, and navigation integration.
 
 ---
 
-## 1. Initial Working-Tree Status
+## 1. Initial Working-Tree Status & Progression
 
-Starting from commit `a74ec70` (_"feat: complete navbar and hero with accessible navigation, responsive mobile drawer, and static rendering"_):
-
-- Branch: `main` synchronized with `origin/main`.
-- Untracked artifacts preserved per handoff rules:
-  - `.playwright-mcp/`
-  - `bootstrap-mcp-smoke.png`
-- Clean working tree with no uncommitted changes prior to Phase 04 execution.
-
----
-
-## 2. Authentic Project Assets & Centralized Data
-
-Authentic project assets were sourced directly from the author's official public repositories, adhering strictly to the constraint of zero AI-generated mockups:
-
-1. **StitchHub (`https://github.com/luchonicolini/StitchHub`):**
-   - Downloaded authentic platform screenshot `public/screenshots/homepage.png` to `public/projects/stitchhub/homepage.png` (107 KB).
-2. **DolarTo (`https://github.com/luchonicolini/DolarToApp`):**
-   - Downloaded authentic iOS quotation captures referenced in the official README to `public/projects/dolarto/preview.png` (619 KB) and `public/projects/dolarto/rates.png` (697 KB).
-3. **Puente (`https://github.com/luchonicolini/Puente_Flutter`):**
-   - Downloaded authentic onboarding and communication assets to `public/projects/puente/preview.png` (85 KB), `public/projects/puente/icon.png` (16 KB), and `public/projects/puente/banner.png` (42 KB).
-4. **Rial Electrónica (`https://github.com/luchonicolini/Rialelectronic_demo`):**
-   - Downloaded authentic catalog demonstration screenshot to `public/projects/rial-electronica/preview.webp` (13 KB).
-5. **LeadRadar (`https://github.com/luchonicolini/Oportunidades_laborales`):**
-   - Sanitized technical engineering case presentation highlighting queue architecture and SSRF safeguards (no private prospect or client data exposed).
-6. **ScopeGuard (`https://github.com/luchonicolini/QuoteFlow_Flutter`):**
-   - Labeled explicitly as "En desarrollo" / "In Development" (early-stage Flutter foundation).
-
-### Centralized Typed Data Models
-
-- `src/data/projects.ts`: Centralized, strictly typed data model containing all 6 verified projects with localized Spanish and English content, technology badges, category classifications, and verified repository/demo URLs.
-- `src/data/contact.ts`: Centralized contact configuration providing verified public GitHub profile (`https://github.com/luchonicolini`) and reserving `contact@example.com` strictly as an automated test fixture while preventing placeholder exposure in production.
+1. **Phase 04 Baseline (`f1987f8`):** Implemented initial Home sections (`#work`, `#about`, `#lab`, `#contact`, footer) with centralized project data and authentic assets.
+2. **Phase 04.1 Review Scope:** Addressed independent source-code review findings:
+   - Fixed production contact fallback bug that exposed `contact@example.com` fixture.
+   - Refactored `selected-work.tsx` into modular presentation cards (`FeaturedMobileCard`, `FeaturedWideCard`, `CompactProjectCard`).
+   - Verified and reconciled factual claims across Puente, DolarTo, ScopeGuard, LeadRadar, Rial Electrónica, and About preview.
+   - Audited and documented exact asset provenance, dimensions, and classifications.
+   - Validated complete quality pipeline with zero regressions and added a production contact E2E assertion.
+3. **Preserved Untracked Artifacts:**
+   - `.playwright-mcp/`
+   - `bootstrap-mcp-smoke.png`
 
 ---
 
-## 3. Implemented Sections & Architectural Decisions
+## 2. Asset Provenance & Classification Audit
 
-### Section 02 — Selected Work (`#work`)
-- **Asymmetric Editorial Layout:** Formatted on a responsive 12-column grid.
-  - **Puente (7 cols):** Prominent mobile accessibility presentation with mint (`#4ECDC4`) top-border, feature highlight bullets, and authentic preview capture.
-  - **DolarTo (5 cols):** Native iOS showcase with coral (`#FF6B6B`) accent, MVVM architecture summary, and mobile screenshot.
-  - **StitchHub (12 cols):** Full-width visual platform card with primary yellow (`#FFDE00`) accent, split 2-column content/media layout, and links to both repository and live Vercel deployment.
-  - **Secondary Technical Row:** LeadRadar (5 cols, engineering architecture), Rial Electrónica (4 cols, independent commercial redesign demo), and ScopeGuard (3 cols, clearly labeled in-development tool).
-- **Accurate Project Statuses:** Verified claims only; demo projects explicitly designated as independent demos or early-stage foundations.
+All assets used in Selected Work were inspected directly from the author's official public repositories. No AI-generated mockups or synthetic placeholders were created.
 
-### Section 03 — About Preview (`#about`)
-- Grounded personal introduction focusing on four core pillars:
-  1. **Mobile Nativo (iOS & SwiftUI):** MVVM, Combine, REST APIs.
-  2. **Multiplataforma (Flutter & Dart):** Layered architecture, Riverpod, strict audio lifecycle.
-  3. **Ingeniería Web (Next.js & TypeScript):** Server Components, Supabase/PostgreSQL, automated pipelines.
-  4. **Accesibilidad & Calidad de Producto:** WCAG 2.2 AA, keyboard navigation, editorial neo-brutalism.
-- No fabricated portraits, years of experience, client logos, or arbitrary skill percentage bars.
+| Project | Local Path | Source Repository & Path | Pixel Dimensions | File Size | Asset Classification | Localized Meaningful Alt Text |
+| --- | --- | --- | --- | --- | --- | --- |
+| **StitchHub** | `public/projects/stitchhub/homepage.png` | `StitchHub:public/screenshots/homepage.png` | 1440 × 1000 | 107 KB | **Authentic application screenshot** | ES: Captura de pantalla de la página principal de descubrimiento visual<br>EN: Screenshot of visual UI discovery homepage |
+| **DolarTo** | `public/projects/dolarto/preview.png` | `DolarToApp:README assets` | 966 × 1812 | 619 KB | **Authentic application screenshot** (native iOS) | ES: Captura de pantalla de cotizaciones en aplicación nativa iOS<br>EN: Screenshot of currency exchange rates in native iOS app |
+| **DolarTo** | `public/projects/dolarto/rates.png` | `DolarToApp:README assets` | 966 × 1812 | 697 KB | **Authentic application screenshot** (secondary screen) | *(Archived for case study page)* |
+| **Puente** | `public/projects/puente/preview.png` | `Puente_Flutter:assets/images/onboarding/onboarding_communication.png` | 280 × 285 | 85 KB | **Original project onboarding illustration** *(not a screenshot)* | ES: Ilustración original de incorporación y comunicación accesible<br>EN: Original onboarding illustration for accessible communication |
+| **Puente** | `public/projects/puente/icon.png` | `Puente_Flutter:puente_app_icon.png` | 1024 × 1024 | 16 KB | **Original application icon asset** | *(Archived for case study page)* |
+| **Puente** | `public/projects/puente/banner.png` | `Puente_Flutter:home_presentation_banner.png` | 182 × 191 | 42 KB | **Original presentation banner asset** | *(Archived for case study page)* |
+| **Rial Electrónica** | `public/projects/rial-electronica/preview.webp` | `Rialelectronic_demo:public/assets/laptop-wide.webp` | 800 × 540 | 13 KB | **Authentic demonstration catalog asset** | ES: Captura de pantalla de la demostración de catálogo comercial<br>EN: Screenshot of commercial catalog demonstration |
+| **LeadRadar** | *N/A (Text-led)* | Sanitized architecture case study | *N/A* | *N/A* | **Text-led engineering case study** *(no synthetic mockups)* | *N/A* |
+| **ScopeGuard** | *N/A (Text-led)* | Local prototype foundation | *N/A* | *N/A* | **Text-led development card** *(no synthetic mockups)* | *N/A* |
 
-### Section 04 — Developer Lab Preview (`#lab`)
-- **Brutalist Button Builder:** A genuinely interactive client island built with React and CSS custom properties:
-  - Accessible controls: background color picker (Yellow, Mint, Coral, Pink), shadow offset slider (0–12px), corner radius slider (0–16px), and reset button.
-  - Live preview button with instant press feedback (transform translation matches shadow offset) and live click counter.
-  - Dynamically generated CSS snippet with one-click copy to clipboard and accessible status feedback.
-  - Respects `prefers-reduced-motion` without unnecessary animation libraries.
+---
 
-### Section 05 — Contact Section (`#contact`)
-- Closing statement with high-impact display headline (`HABLEMOS.` / `LET'S TALK.`) and 6px solid offset shadow on primary yellow.
-- Verified GitHub link button pointing to `https://github.com/luchonicolini`.
-- Clipboard copying for development fixture email with accessible confirmation.
-- LinkedIn labeled with "Próximamente" / "Coming soon". No contact form or backend dependencies.
+## 3. Review Corrections & Refactoring (Phase 04.1)
 
-### Section 06 — Compact Editorial Footer
-- Semantic `<footer>` containing the `LN.` logo badge, navigation links to all sections, GitHub link, copyright information, and accessible "Volver arriba ↑" back-to-top anchor.
+### 3.1 Production Contact Hardening
+- **Root Cause:** `contact-section.tsx` previously evaluated `const activeEmail = contactConfig.email || contactConfig.emailFixture`, falling back to `contact@example.com` and rendering a button to copy the test fixture in production.
+- **Resolution:**
+  1. Completely removed `emailFixture` from `src/data/contact.ts`.
+  2. Isolated `contact@example.com` in `tests/fixtures/contact.ts` for unit test fixtures only.
+  3. In `src/components/contact-section.tsx`, if `contactConfig.email` is null, the component renders a noninteractive editorial notice (`Canal de contacto directo por email disponible a la brevedad...`), with zero exposure of mock emails or copy actions.
+  4. Preserved verified GitHub profile action (`https://github.com/luchonicolini`).
+  5. Render LinkedIn and CV actions only when verified owner values exist in `contactConfig`.
+  6. Provided accessible live-region status feedback (`role="status" aria-live="polite"`) when copying email addresses.
+  7. Added an automated Playwright E2E assertion verifying that `contact@example.com` and test-email copy controls are completely absent in production across both locales.
 
-### Section 07 — Navigation Integration
-- Activated Hero primary CTA (`VER PROYECTOS` / `EXPLORE WORK`) as an active link to `#work`.
-- Activated Navbar and mobile drawer links to `#work`, `#about`, `#lab`, and `#contact`.
-- Kept `CV ↗` disabled (`aria-disabled="true"`) pending owner-approved PDF.
-- Maintained URL query parameters and hash preservation across language switches.
+### 3.2 Selected Work Component Refactoring
+- **Issue:** `src/components/selected-work.tsx` contained redundant markup structures across project cards.
+- **Resolution:** Extracted three reusable presentation card variants into `src/components/project-cards.tsx`:
+  - `FeaturedMobileCard`: Sized for prominent mobile showcases (Puente 7 cols, DolarTo 5 cols with `tallMedia`).
+  - `FeaturedWideCard`: Sized for full-width platforms (StitchHub 12 cols with 2-column wide layout).
+  - `CompactProjectCard`: Sized for secondary row projects (LeadRadar 5 cols with highlights, Rial Electrónica 4 cols with media, ScopeGuard 3 cols).
+- **Benefits:**
+  - Reduced `selected-work.tsx` from 497 lines to 83 lines without altering visual hierarchy or layout.
+  - Reusable for the upcoming `/work` page.
+  - Kept lightweight with 0 unused Knip exports.
+
+### 3.3 Factual Claims Verification & Reconciliation
+Claims were reviewed against `docs/PROJECTS.md` and repository manifests in both Spanish and English:
+1. **Puente:** Replaced unsupported "completamente offline-first" guarantees with accurate phrasing: *"con persistencia local de preferencias y ciclo de vida de audio controlado (STT/TTS bajo demanda, sin almacenamiento de audio en servidores externos)"*.
+2. **DolarTo:** Clarified that exchange rates are retrieved via the public DolarApi service (not guaranteed real-time); noted that source code and UI captures are verified while the public App Store listing link is pending confirmation.
+3. **ScopeGuard:** Explicitly designated as an early-stage local prototype (Material 3 & Riverpod) with client approval and remote sync workflows planned.
+4. **LeadRadar:** Formatted as an internal engineering case study detailing atomic queue architecture and pre-connection SSRF safeguards without unverified security guarantees or private repository links.
+5. **Rial Electrónica:** Preserved the independent, unofficial commercial redesign demo status (not commissioned by the brand).
+6. **About Preview:** Described WCAG 2.2 AA as an accessibility target (*"Objetivo de accesibilidad WCAG 2.2 AA"*), avoiding claims of third-party certified compliance.
 
 ---
 
@@ -89,12 +79,13 @@ Authentic project assets were sourced directly from the author's official public
 
 Visual validation performed across 1440px desktop and 390px mobile viewports. Full-page screenshots captured and saved in `docs/screenshots/`:
 
-- **Desktop (1440x900):** `docs/screenshots/home-desktop.png` (961 KB)
-- **Mobile (390x844):** `docs/screenshots/home-mobile.png` (629 KB)
+- **Desktop (1440x900):** `docs/screenshots/home-desktop.png`
+- **Mobile (390x844):** `docs/screenshots/home-mobile.png`
 
-Both screenshots confirm the StitchHub-inspired neo-brutalist identity:
-- Canvas `#F8F8F6`, black outlines (2–3px), flat accent colors (Yellow `#FFDE00`, Mint `#4ECDC4`, Coral `#FF6B6B`), Space Grotesk and Space Mono typography.
-- Clean horizontal alignment and asymmetry on desktop; zero horizontal scroll (`scrollWidth <= viewportWidth`) across all target viewports (320px, 390px, 768px, 1024px, 1280px, 1440px).
+Verification confirms:
+- Canvas `#F8F8F6`, crisp 2–3px solid black outlines, flat neo-brutalist accents (`#FFDE00`, `#4ECDC4`, `#FF6B6B`, `#FF70A6`).
+- Clean asymmetric composition on desktop, single-column responsive flow on mobile.
+- Zero horizontal overflow (`scrollWidth <= viewportWidth`) across all 6 target widths (320px, 390px, 768px, 1024px, 1280px, 1440px).
 
 ---
 
@@ -111,11 +102,11 @@ All quality gates executed cleanly via `npm run check`:
 | **Code Formatting** | Prettier | Passed (`All matched files use Prettier code style!`) |
 | **Static Analysis** | ESLint | Passed (0 errors, 0 warnings) |
 | **Type Checking** | TypeScript (`tsc --noEmit`) | Passed (0 errors) |
-| **Unit Tests** | Vitest | Passed (5 test files, 11/11 tests passed) |
+| **Unit Tests** | Vitest | Passed (5 test files, 12/12 tests passed) |
 | **Unused Exports** | Knip | Passed (0 unused files, dependencies or exports) |
 | **Production Build** | Next.js 16 (Turbopack) | Passed (`● (SSG)` static HTML generation for `/es` and `/en`) |
-| **E2E Smoke Tests** | Playwright | Passed (4/4 tests passed including responsive reflow & 0 Axe violations) |
-| **Lighthouse CI** | LHCI (3 runs) | Passed (1.00 Accessibility, 1.00 Best Practices, 1.00 SEO, 0.91 median Performance) |
+| **E2E Smoke Tests** | Playwright | Passed (5/5 tests passed including production contact check & 0 Axe violations) |
+| **Lighthouse CI** | LHCI (3 runs) | Passed (1.00 Accessibility, 1.00 Best Practices, 1.00 SEO, 0.88 Performance) |
 | **Design System Tests** | Playwright Preview | Passed (5/5 tests passed) |
 | **Design Critique** | Impeccable Detect | Passed (0 source code findings) |
 

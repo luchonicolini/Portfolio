@@ -40,9 +40,9 @@ export function AboutPreview({ locale }: { locale: string }) {
         ? 'Accesibilidad & Calidad de Producto'
         : 'Accessibility & Product Craft',
       description: es
-        ? 'Cumplimiento WCAG 2.2 AA, navegación integral por teclado, soporte de lectores de pantalla, pruebas E2E con Playwright y un lenguaje visual editorial neo-brutalista deliberado.'
-        : 'WCAG 2.2 AA conformance, full keyboard navigation, screen reader accessibility, Playwright E2E suites, and intentional editorial neo-brutalist visuals.',
-      tag: 'A11y / WCAG 2.2 AA'
+        ? 'Objetivo de accesibilidad WCAG 2.2 AA, navegación integral por teclado, soporte de lectores de pantalla, pruebas E2E con Playwright y un lenguaje visual editorial neo-brutalista deliberado.'
+        : 'WCAG 2.2 AA accessibility target, full keyboard navigation, screen reader accessibility, Playwright E2E suites, and intentional editorial neo-brutalist visuals.',
+      tag: es ? 'A11y / Objetivo WCAG 2.2 AA' : 'A11y / WCAG 2.2 AA Target'
     }
   ];
 
