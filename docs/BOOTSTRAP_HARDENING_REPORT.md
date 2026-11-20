@@ -56,4 +56,4 @@ The approved Home and secondary page implementations remain intentionally out of
 
 ## GitHub verification
 
-After pushing the synchronization commit, verify the remote `main` SHA and that it contains the preserved original history, local foundation commits, hardening report and updated gates. The synchronization commit SHA is the final GitHub commit requested for this phase.
+The synchronization merge was pushed to the official `main` branch without force. `git ls-remote origin refs/heads/main` confirmed `0da7a21586fc79324a37c98de4c1c65e1be1d8f1`, the report-only commit following the synchronization merge. The remote tree contains the original history, both local bootstrap commits, the hardening commit, this report and updated gates. The synchronization merge SHA above identifies the commit that joined both histories.
