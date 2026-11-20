@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
-import { Navigation } from '../../components/home-navigation';
+import { SiteNavigation } from '../../components/site-navigation';
 
 vi.mock('next/navigation', () => ({ usePathname: () => '/es' }));
 
@@ -9,7 +9,7 @@ describe('navigation', () => {
   it('identifies the menu, active section links, and disabled CV destination', () => {
     render(
       <NextIntlClientProvider locale="es" messages={{}}>
-        <Navigation locale="es" />
+        <SiteNavigation locale="es" />
       </NextIntlClientProvider>
     );
     expect(screen.getByRole('button', { name: 'Abrir menú' })).toHaveAttribute(

@@ -3,12 +3,12 @@ import { setRequestLocale } from 'next-intl/server';
 import { ArrowRight, Download } from 'lucide-react';
 import { routing } from '@/i18n/routing';
 import { Container } from '@/components/design-system/components';
-import { Navigation } from '@/components/home-navigation';
+import { SiteNavigation } from '@/components/site-navigation';
 import { SelectedWork } from '@/components/selected-work';
 import { AboutPreview } from '@/components/about-preview';
 import { LabPreview } from '@/components/lab-preview';
 import { ContactSection } from '@/components/contact-section';
-import { HomeFooter } from '@/components/home-footer';
+import { SiteFooter } from '@/components/site-footer';
 import styles from '@/components/home.module.css';
 
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ export default async function HomePage({
       <a className={styles.skip} href="#main">
         {es ? 'Saltar al contenido' : 'Skip to content'}
       </a>
-      <Navigation locale={locale} />
+      <SiteNavigation locale={locale} />
       <main id="main">
         <Container>
           <section className={styles.hero} aria-labelledby="hero-title">
@@ -106,7 +106,7 @@ export default async function HomePage({
         <LabPreview locale={locale} />
         <ContactSection locale={locale} />
       </main>
-      <HomeFooter locale={locale} />
+      <SiteFooter locale={locale} />
     </>
   );
 }

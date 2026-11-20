@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { AboutContent } from '../../../components/about/about-content';
-import { SecondaryNavigation } from '../../../components/secondary-navigation';
+import { SiteNavigation } from '../../../components/site-navigation';
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/es/about'
@@ -12,7 +12,7 @@ describe('About page components', () => {
   it('renders primary About sections, bio, and timeline in Spanish', () => {
     render(
       <NextIntlClientProvider locale="es" messages={{}}>
-        <SecondaryNavigation locale="es" activeRoute="about" />
+        <SiteNavigation locale="es" activeRoute="about" />
         <AboutContent locale="es" />
       </NextIntlClientProvider>
     );

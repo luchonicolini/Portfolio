@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { ContactPageContent } from '../../../components/contact/contact-page-content';
-import { SecondaryNavigation } from '../../../components/secondary-navigation';
+import { SiteNavigation } from '../../../components/site-navigation';
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/es/contact'
@@ -12,7 +12,7 @@ describe('Contact page components', () => {
   it('renders primary Contact elements without exposing test fixtures', () => {
     const { container } = render(
       <NextIntlClientProvider locale="es" messages={{}}>
-        <SecondaryNavigation locale="es" activeRoute="contact" />
+        <SiteNavigation locale="es" activeRoute="contact" />
         <ContactPageContent locale="es" />
       </NextIntlClientProvider>
     );

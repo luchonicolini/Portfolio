@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Container } from '@/components/design-system/components';
-import { Navigation } from '@/components/home-navigation';
-import { HomeFooter } from '@/components/home-footer';
+import { SiteNavigation } from '@/components/site-navigation';
+import { SiteFooter } from '@/components/site-footer';
 import { WorkGallery } from '@/components/work-gallery';
 import styles from '@/components/work.module.css';
 
@@ -54,7 +54,7 @@ export default async function WorkPage({
       <a className={styles.skip} href="#main">
         {es ? 'Saltar al contenido' : 'Skip to content'}
       </a>
-      <Navigation locale={locale} />
+      <SiteNavigation locale={locale} activeRoute="work" />
       <main id="main" className={styles.main}>
         <Container>
           <header className={styles.workHeader}>
@@ -96,7 +96,7 @@ export default async function WorkPage({
           <WorkGallery locale={locale} />
         </Container>
       </main>
-      <HomeFooter locale={locale} />
+      <SiteFooter locale={locale} />
     </>
   );
 }

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { SecondaryNavigation } from '@/components/secondary-navigation';
-import { SecondaryFooter } from '@/components/secondary-footer';
+import { SiteNavigation } from '@/components/site-navigation';
+import { SiteFooter } from '@/components/site-footer';
 import { AboutContent } from '@/components/about/about-content';
 import styles from '@/components/home.module.css';
 
@@ -41,11 +41,11 @@ export default async function AboutPage({
       <a className={styles.skip} href="#main">
         {es ? 'Saltar al contenido' : 'Skip to content'}
       </a>
-      <SecondaryNavigation locale={locale} activeRoute="about" />
+      <SiteNavigation locale={locale} activeRoute="about" />
       <main id="main">
         <AboutContent locale={locale} />
       </main>
-      <SecondaryFooter locale={locale} />
+      <SiteFooter locale={locale} variant="secondary" />
     </>
   );
 }

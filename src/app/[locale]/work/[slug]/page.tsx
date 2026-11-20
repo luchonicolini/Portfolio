@@ -18,8 +18,8 @@ import {
   Zap
 } from 'lucide-react';
 import { Container } from '@/components/design-system/components';
-import { Navigation } from '@/components/home-navigation';
-import { HomeFooter } from '@/components/home-footer';
+import { SiteNavigation } from '@/components/site-navigation';
+import { SiteFooter } from '@/components/site-footer';
 import { DolarToGallery } from '@/components/dolarto-gallery';
 import { LeadRadarArchitecture } from '@/components/leadradar-architecture';
 import { getAllProjects, getProjectBySlug } from '@/data/projects';
@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   return (
     <>
-      <Navigation locale={locale} />
+      <SiteNavigation locale={locale} activeRoute="work" />
       <main id="main" className={styles.main}>
         <Container>
           <nav
@@ -91,7 +91,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             className={styles.breadcrumbs}
           >
             <Link href={`/${locale}/work`} className={styles.breadcrumbLink}>
-              WORK
+              {es ? 'PROYECTOS' : 'WORK'}
             </Link>
             <span className={styles.breadcrumbSeparator} aria-hidden="true">
               &gt;
@@ -204,7 +204,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
             <div className={styles.overviewCard}>
               <div className={styles.overviewHeader}>
-                <span>OVERVIEW.</span>
+                <span>{es ? 'RESUMEN.' : 'OVERVIEW.'}</span>
                 <div className={styles.stripes} aria-hidden="true" />
               </div>
               <div className={styles.overviewBody}>
@@ -492,7 +492,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </nav>
         </Container>
       </main>
-      <HomeFooter locale={locale} />
+      <SiteFooter locale={locale} />
     </>
   );
 }
