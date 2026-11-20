@@ -81,6 +81,7 @@ export function FeaturedMobileCard({
             width={project.image.width}
             height={project.image.height}
             priority={priority}
+            fetchPriority={priority ? 'high' : 'auto'}
             className={
               tallMedia ? styles.projectImageContain : styles.projectImage
             }

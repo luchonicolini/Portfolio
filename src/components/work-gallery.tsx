@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getAllProjects } from '@/data/projects';
 import {
@@ -25,30 +26,50 @@ const labels: Record<WorkCategory, [string, string]> = {
   'web-design': ['Diseño web', 'Web design']
 };
 
-export function WorkGallery({ locale }: { locale: string }) {
-  const es = locale === 'es';
-  const pathname = usePathname();
-  const router = useRouter();
+function SearchParamListener({
+  onCategoryChange
+}: {
+  onCategoryChange: (category: WorkCategory) => void;
+}) {
   const search = useSearchParams();
   const rawCategory = search.get('category');
   const category =
     rawCategory === null ? 'all' : parseWorkCategory(rawCategory);
+
+  useEffect(() => {
+    onCategoryChange(category || 'all');
+  }, [category, onCategoryChange]);
+
+  return null;
+}
+
+export function WorkGallery({ locale }: { locale: string }) {
+  const es = locale === 'es';
+  const pathname = usePathname();
+  const router = useRouter();
+  const [category, setCategory] = useState<WorkCategory>('all');
   const allProjects = getAllProjects();
   const projects = category ? filterProjects(allProjects, category) : [];
 
   function selectCategory(next: WorkCategory) {
-    const query = new URLSearchParams(search.toString());
+    setCategory(next);
+    const searchString =
+      typeof window !== 'undefined' ? window.location.search : '';
+    const query = new URLSearchParams(searchString);
     if (next === 'all') query.delete('category');
     else query.set('category', next);
     const suffix = query.toString();
-    router.push(
-      `${pathname}${suffix ? `?${suffix}` : ''}${window.location.hash}`,
-      { scroll: false }
-    );
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    router.push(`${pathname}${suffix ? `?${suffix}` : ''}${hash}`, {
+      scroll: false
+    });
   }
 
   return (
     <>
+      <Suspense fallback={null}>
+        <SearchParamListener onCategoryChange={setCategory} />
+      </Suspense>
       <div className={styles.filtersContainer}>
         <div
           className={styles.filters}
@@ -101,7 +122,7 @@ export function WorkGallery({ locale }: { locale: string }) {
                       : homeStyles.span5
                   }
                   tallMedia
-                  priority
+                  priority={project.id === 'puente'}
                 />
               );
             if (project.id === 'stitchhub')

@@ -38,6 +38,7 @@ export function DolarToGallery({ locale }: { locale: string }) {
           width={966}
           height={1812}
           priority
+          fetchPriority="high"
           className={styles.mediaImage}
           sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 30vw"
         />

@@ -47,6 +47,7 @@ export async function generateMetadata({
     description: content.tagline,
     openGraph: { title, description: content.tagline },
     alternates: {
+      canonical: `/${locale}/work/${slug}`,
       languages: { es: `/es/work/${slug}`, en: `/en/work/${slug}` }
     }
   };
@@ -155,6 +156,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                     width={project.image.width}
                     height={project.image.height}
                     priority
+                    fetchPriority="high"
                     className={styles.mediaImage}
                     sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 30vw"
                   />

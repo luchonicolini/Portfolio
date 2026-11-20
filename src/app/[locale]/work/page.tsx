@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Container } from '@/components/design-system/components';
@@ -94,15 +93,7 @@ export default async function WorkPage({
               </div>
             </div>
           </header>
-          <Suspense
-            fallback={
-              <p className={styles.loading}>
-                {es ? 'Cargando proyectos…' : 'Loading projects…'}
-              </p>
-            }
-          >
-            <WorkGallery locale={locale} />
-          </Suspense>
+          <WorkGallery locale={locale} />
         </Container>
       </main>
       <HomeFooter locale={locale} />
