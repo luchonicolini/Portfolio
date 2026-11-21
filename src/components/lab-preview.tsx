@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Copy, Check, RotateCcw, Sparkles } from 'lucide-react';
 import { Container } from './design-system/components';
 import styles from './home.module.css';
@@ -61,12 +62,9 @@ export function LabPreview({ locale }: { locale: string }) {
             </h2>
           </div>
           <div className={styles.sectionHeaderRight}>
-            <span className={styles.sectionBadge} aria-disabled="true">
-              LAB COMPLETO →
-              <small className={styles.actionBadge}>
-                {es ? 'Próximamente' : 'Coming soon'}
-              </small>
-            </span>
+            <Link href={`/${locale}/lab`} className={styles.sectionBadge}>
+              {es ? 'LAB COMPLETO →' : 'FULL LAB →'}
+            </Link>
           </div>
         </div>
 

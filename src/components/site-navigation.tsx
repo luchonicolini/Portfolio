@@ -34,9 +34,11 @@ export function SiteNavigation({ locale, activeRoute }: SiteNavigationProps) {
       ? 'work'
       : pathname.includes('/about')
         ? 'about'
-        : pathname.includes('/contact')
-          ? 'contact'
-          : undefined);
+        : pathname.includes('/lab')
+          ? 'lab'
+          : pathname.includes('/contact')
+            ? 'contact'
+            : undefined);
 
   const navItems = [
     {
@@ -54,7 +56,7 @@ export function SiteNavigation({ locale, activeRoute }: SiteNavigationProps) {
     {
       id: 'lab',
       label: 'Lab',
-      href: isHome ? '#lab' : `/${locale}#lab`,
+      href: isHome ? '#lab' : `/${locale}/lab`,
       active: currentRoute === 'lab'
     },
     {
