@@ -5,28 +5,8 @@ import { notFound } from 'next/navigation';
 import { Space_Grotesk, Space_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { ReactGrab } from '@/components/react-grab';
+import { getValidatedSiteUrl } from '@/lib/site-url';
 import '../globals.css';
-
-function getValidatedSiteUrl(): URL {
-  const envUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL;
-  if (envUrl && typeof envUrl === 'string' && envUrl.trim() !== '') {
-    const trimmed = envUrl.trim();
-    const withProtocol = /^https?:\/\//i.test(trimmed)
-      ? trimmed
-      : `https://${trimmed}`;
-    try {
-      const parsed = new URL(withProtocol);
-      if (parsed.hostname) {
-        return parsed;
-      }
-    } catch {
-      // In case of malformed environment variable, safely fall back
-    }
-  }
-
-  // Safe fallback for local development and test environments
-  return new URL('http://localhost:3000');
-}
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -62,6 +42,11 @@ export async function generateMetadata({
       description,
       locale: es ? 'es_AR' : 'en_US',
       type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description
     },
     alternates: {
       canonical: `/${locale}`,
