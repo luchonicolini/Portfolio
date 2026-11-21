@@ -81,6 +81,7 @@ export default async function HomePage({
                 height={1086}
                 sizes="(max-width: 767px) 45vw, (max-width: 1200px) 48vw, 620px"
                 priority
+                fetchPriority="high"
               />
             </div>
           </section>

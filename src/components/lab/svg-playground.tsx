@@ -91,7 +91,40 @@ export function SvgPlayground({ locale }: SvgPlaygroundProps) {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Animation loop via requestAnimationFrame
+  // Viewport intersection observer: only animate when element is visible
+  const containerRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          setIsVisible(entry.isIntersecting);
+        }
+      },
+      { rootMargin: '100px 0px' }
+    );
+
+    const el = containerRef.current;
+    if (el) {
+      observer.observe(el);
+    }
+
+    return () => {
+      if (el) {
+        observer.unobserve(el);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  // Animation loop via requestAnimationFrame (runs only when visible and playing)
   const animRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
 
@@ -103,22 +136,22 @@ export function SvgPlayground({ locale }: SvgPlaygroundProps) {
       const delta = timestamp - lastTimeRef.current;
       lastTimeRef.current = timestamp;
 
-      if (!isPaused && !prefersReducedMotion) {
+      if (!isPaused && !prefersReducedMotion && isVisible) {
         setProgress((prev) => {
           // Duration in ms: duration * 1000
           const increment = (delta / (duration * 1000)) * 100;
           const next = prev + increment;
           return next >= 100 ? 0 : next;
         });
-      }
 
-      animRef.current = requestAnimationFrame(animateLoop);
+        animRef.current = requestAnimationFrame(animateLoop);
+      }
     },
-    [isPaused, prefersReducedMotion, duration]
+    [isPaused, prefersReducedMotion, isVisible, duration]
   );
 
   useEffect(() => {
-    if (!isPaused && !prefersReducedMotion) {
+    if (!isPaused && !prefersReducedMotion && isVisible) {
       lastTimeRef.current = null;
       animRef.current = requestAnimationFrame(animateLoop);
     } else {
@@ -133,7 +166,7 @@ export function SvgPlayground({ locale }: SvgPlaygroundProps) {
         cancelAnimationFrame(animRef.current);
       }
     };
-  }, [isPaused, prefersReducedMotion, animateLoop]);
+  }, [isPaused, prefersReducedMotion, isVisible, animateLoop]);
 
   // Reset to defaults
   function handleReset() {
@@ -180,6 +213,7 @@ export function SvgPlayground({ locale }: SvgPlaygroundProps) {
 
   return (
     <article
+      ref={containerRef}
       id="experiment-svg"
       className={styles.playgroundCard}
       aria-labelledby="svg-experiment-title"
