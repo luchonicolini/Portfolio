@@ -17,13 +17,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const es = locale === 'es';
+  const title = es
+    ? 'Contacto — Luciano Nicolini | Hablemos'
+    : "Contact — Luciano Nicolini | Let's Talk";
+  const description = es
+    ? 'Canales de contacto verificados para colaborar en desarrollo mobile, ingeniería web y propuestas técnicas.'
+    : 'Verified contact channels to collaborate on mobile development, web engineering, and technical proposals.';
   return {
-    title: es
-      ? 'Contacto — Luciano Nicolini | Hablemos'
-      : "Contact — Luciano Nicolini | Let's Talk",
-    description: es
-      ? 'Canales de contacto verificados para colaborar en desarrollo mobile, ingeniería web y propuestas técnicas.'
-      : 'Verified contact channels to collaborate on mobile development, web engineering, and technical proposals.'
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      locale: es ? 'es_AR' : 'en_US',
+      type: 'website'
+    },
+    alternates: {
+      canonical: `/${locale}/contact`,
+      languages: {
+        es: '/es/contact',
+        en: '/en/contact'
+      }
+    }
   };
 }
 

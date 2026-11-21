@@ -17,13 +17,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const es = locale === 'es';
+  const title = es
+    ? 'Developer Lab — Luciano Nicolini | Mobile & Web Developer'
+    : 'Developer Lab — Luciano Nicolini | Mobile & Web Developer';
+  const description = es
+    ? 'Laboratorio interactivo de desarrollo y diseño: Brutalist Button Builder, físicas con Motion, tokens de diseño, tipografía y animaciones SVG.'
+    : 'Interactive development and design laboratory: Brutalist Button Builder, Motion spring dynamics, design tokens, typography, and SVG animations.';
   return {
-    title: es
-      ? 'Developer Lab — Luciano Nicolini | Mobile & Web Developer'
-      : 'Developer Lab — Luciano Nicolini | Mobile & Web Developer',
-    description: es
-      ? 'Laboratorio interactivo de desarrollo y diseño: Brutalist Button Builder, físicas con Motion, tokens de diseño, tipografía y animaciones SVG.'
-      : 'Interactive development and design laboratory: Brutalist Button Builder, Motion spring dynamics, design tokens, typography, and SVG animations.'
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      locale: es ? 'es_AR' : 'en_US',
+      type: 'website'
+    },
+    alternates: {
+      canonical: `/${locale}/lab`,
+      languages: {
+        es: '/es/lab',
+        en: '/en/lab'
+      }
+    }
   };
 }
 

@@ -51,6 +51,82 @@ test.describe('Developer Lab E2E & Visual Verification', () => {
     ).toBeVisible();
   });
 
+  test('Cross-page global navigation between Developer Lab and all portfolio pages', async ({
+    page
+  }) => {
+    // 1. Start at /es/lab
+    await page.goto('/es/lab');
+    await expect(
+      page.getByRole('heading', { level: 1, name: /DEV LAB\./i })
+    ).toBeVisible();
+
+    const mainNav = page.getByRole('navigation', {
+      name: 'Navegación principal'
+    });
+
+    // 2. Navigate from Lab to Work
+    await mainNav.getByRole('link', { name: 'Proyectos' }).click();
+    await expect(page).toHaveURL(/\/es\/work/);
+    await expect(
+      page.getByRole('heading', { level: 1, name: /PROYECTOS\./i })
+    ).toBeVisible();
+
+    // 3. Navigate from Work back to Lab
+    await page
+      .getByRole('navigation', { name: 'Navegación principal' })
+      .getByRole('link', { name: 'Lab' })
+      .click();
+    await expect(page).toHaveURL(/\/es\/lab/);
+
+    // 4. Navigate from Lab to About
+    await page
+      .getByRole('navigation', { name: 'Navegación principal' })
+      .getByRole('link', { name: 'Sobre mí' })
+      .click();
+    await expect(page).toHaveURL(/\/es\/about/);
+    await expect(
+      page.getByRole('heading', { level: 1, name: /SOBRE MÍ\./i })
+    ).toBeVisible();
+
+    // 5. Navigate from About back to Lab
+    await page
+      .getByRole('navigation', { name: 'Navegación principal' })
+      .getByRole('link', { name: 'Lab' })
+      .click();
+    await expect(page).toHaveURL(/\/es\/lab/);
+
+    // 6. Navigate from Lab to Contact
+    await page
+      .getByRole('navigation', { name: 'Navegación principal' })
+      .getByRole('link', { name: 'Contacto' })
+      .click();
+    await expect(page).toHaveURL(/\/es\/contact/);
+    await expect(
+      page.getByRole('heading', { level: 1, name: /HABLEMOS\./i })
+    ).toBeVisible();
+
+    // 7. Navigate from Contact to Lab via Footer link
+    const footerNav = page.getByRole('navigation', {
+      name: 'Navegación del pie'
+    });
+    await footerNav.getByRole('link', { name: 'Lab' }).click();
+    await expect(page).toHaveURL(/\/es\/lab/);
+
+    // 8. Test language switcher on Lab page (preserves /lab route in English)
+    await page.getByRole('link', { name: /Cambiar idioma a inglés/i }).click();
+    await expect(page).toHaveURL(/\/en\/lab/);
+    await expect(
+      page.getByRole('heading', { level: 1, name: /DEV LAB\./i })
+    ).toBeVisible();
+
+    // 9. Navigate back to Home from English Lab via Brand logo in header
+    await page
+      .getByRole('banner')
+      .getByRole('link', { name: /LN\. Luciano Nicolini — Home/i })
+      .click();
+    await expect(page).toHaveURL(/\/en$/);
+  });
+
   test('Interactive experiments respond to user controls, copy code, and reset cleanly', async ({
     page
   }) => {

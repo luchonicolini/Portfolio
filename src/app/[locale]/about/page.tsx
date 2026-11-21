@@ -17,13 +17,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const es = locale === 'es';
+  const title = es
+    ? 'Sobre mí — Luciano Nicolini | Mobile & Web Developer'
+    : 'About — Luciano Nicolini | Mobile & Web Developer';
+  const description = es
+    ? 'Conocé mi trayectoria, stack tecnológico comprobable, enfoque de accesibilidad y forma de trabajo en desarrollo móvil y web.'
+    : 'Learn about my journey, verified tech stack, accessibility focus, and approach to mobile and web engineering.';
   return {
-    title: es
-      ? 'Sobre mí — Luciano Nicolini | Mobile & Web Developer'
-      : 'About — Luciano Nicolini | Mobile & Web Developer',
-    description: es
-      ? 'Conocé mi trayectoria, stack tecnológico comprobable, enfoque de accesibilidad y forma de trabajo en desarrollo móvil y web.'
-      : 'Learn about my journey, verified tech stack, accessibility focus, and approach to mobile and web engineering.'
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      locale: es ? 'es_AR' : 'en_US',
+      type: 'website'
+    },
+    alternates: {
+      canonical: `/${locale}/about`,
+      languages: {
+        es: '/es/about',
+        en: '/en/about'
+      }
+    }
   };
 }
 
