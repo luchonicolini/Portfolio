@@ -119,6 +119,47 @@ test.describe('Developer Lab E2E & Visual Verification', () => {
     await expect(page.locator('#experiment-svg')).toBeVisible();
   });
 
+  test('Category filter navigation filters experiments and handles scroll targets cleanly', async ({
+    page
+  }) => {
+    await page.goto('/es/lab');
+
+    const filterNav = page.locator('nav[aria-label="Filtro de experimentos"]');
+    await expect(filterNav).toBeVisible();
+
+    // Filter to Motion
+    const motionBtn = filterNav.getByRole('button', { name: /Física Motion/i });
+    await motionBtn.click();
+    await expect(motionBtn).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#spring-physics')).toBeVisible();
+    await expect(page.locator('#experiment-01')).toBeHidden();
+
+    // Filter to Typography
+    const typeBtn = filterNav.getByRole('button', { name: /Tipografía/i });
+    await typeBtn.click();
+    await expect(typeBtn).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#experiment-03')).toBeVisible();
+    await expect(page.locator('#spring-physics')).toBeHidden();
+
+    // Filter to SVG
+    const svgBtn = filterNav.getByRole('button', { name: /SVG Vectorial/i });
+    await svgBtn.click();
+    await expect(svgBtn).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#experiment-svg')).toBeVisible();
+    await expect(page.locator('#experiment-03')).toBeHidden();
+
+    // Filter back to Todos
+    const allBtn = filterNav.getByRole('button', { name: /Todos/i });
+    await allBtn.click();
+    await expect(allBtn).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#experiment-01')).toBeVisible();
+    await expect(page.locator('#spring-physics')).toBeVisible();
+    await expect(page.locator('#experiment-03')).toBeVisible();
+    await expect(page.locator('#experiment-tokens')).toBeVisible();
+    await expect(page.locator('#layout-animation')).toBeVisible();
+    await expect(page.locator('#experiment-svg')).toBeVisible();
+  });
+
   test('Captures high-fidelity screenshots for documentation across viewports', async ({
     page
   }) => {

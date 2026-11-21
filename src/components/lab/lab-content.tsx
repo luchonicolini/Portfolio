@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FlaskConical,
   Check,
@@ -32,6 +32,38 @@ export function LabContent({ locale }: LabContentProps) {
   const isEs = locale === 'es';
   const [selectedCategory, setSelectedCategory] =
     useState<FilterCategory>('all');
+  const [targetAnchor, setTargetAnchor] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!targetAnchor || typeof window === 'undefined') return;
+
+    // Use requestAnimationFrame to guarantee React has committed and mounted the filtered view in the DOM
+    const frameId = requestAnimationFrame(() => {
+      const element = document.getElementById(targetAnchor);
+      if (element) {
+        const prefersReducedMotion =
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        element.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      }
+      setTargetAnchor(null);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [selectedCategory, targetAnchor]);
+
+  function handleFilterClick(category: FilterCategory, anchor?: string) {
+    setSelectedCategory(category);
+    if (anchor) {
+      setTargetAnchor(anchor);
+    } else {
+      setTargetAnchor('lab-experiments-container');
+    }
+  }
 
   const filterOptions: {
     id: FilterCategory;
@@ -81,16 +113,6 @@ export function LabContent({ locale }: LabContentProps) {
       anchor: 'experiment-svg'
     }
   ];
-
-  function handleFilterClick(category: FilterCategory, anchor?: string) {
-    setSelectedCategory(category);
-    if (anchor && typeof window !== 'undefined') {
-      const element = document.getElementById(anchor);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
 
   const checklistItems = isEs
     ? [
@@ -229,7 +251,10 @@ export function LabContent({ locale }: LabContentProps) {
       </nav>
 
       {/* Interactive Experiments Container */}
-      <div className={styles.experimentsContainer}>
+      <div
+        id="lab-experiments-container"
+        className={styles.experimentsContainer}
+      >
         <Container>
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}

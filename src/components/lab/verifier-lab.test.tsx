@@ -6,6 +6,7 @@ import { SpringPlayground } from './spring-playground';
 import { LayoutPlayground } from './layout-playground';
 import { TokensPlayground } from './tokens-playground';
 import { SvgPlayground } from './svg-playground';
+import { LabContent } from './lab-content';
 import {
   BUTTON_BUILDER_DEFAULTS,
   SPRING_PHYSICS_DEFAULTS,
@@ -219,6 +220,77 @@ describe('Verifier Independent Audit - Developer Lab (All 6 Experiments)', () =>
       const yellowOnBlack = calculateContrastRatio('#ffde00', '#000000');
       expect(yellowOnBlack).toBeGreaterThan(10);
       expect(getWcagStatus(yellowOnBlack).aaNormal).toBe(true);
+    });
+  });
+
+  describe('Audit 4: Category Navigation & Reduced-Motion Scroll', () => {
+    it('filters experiments when category buttons are clicked and triggers scrollIntoView', async () => {
+      const scrollIntoViewMock = vi.fn();
+      window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+      vi.spyOn(window, 'requestAnimationFrame').mockImplementation(
+        (cb) => setTimeout(cb, 10) as unknown as number
+      );
+
+      render(<LabContent locale="es" />);
+
+      // Filter to Motion
+      const motionBtn = screen.getByRole('button', { name: /Física Motion/i });
+      await act(async () => {
+        fireEvent.click(motionBtn);
+      });
+
+      expect(motionBtn).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByText('Física de Resortes con Motion')).toBeDefined();
+      expect(screen.queryByText('Brutalist Button Builder')).toBeNull();
+
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+
+      expect(scrollIntoViewMock).toHaveBeenCalledWith({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    it('respects prefers-reduced-motion when scrolling on category click', async () => {
+      const scrollIntoViewMock = vi.fn();
+      window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: vi.fn().mockImplementation((query: string) => ({
+          matches: query === '(prefers-reduced-motion: reduce)',
+          media: query,
+          onchange: null,
+          addListener: vi.fn(),
+          removeListener: vi.fn(),
+          addEventListener: vi.fn(),
+          removeEventListener: vi.fn(),
+          dispatchEvent: vi.fn()
+        }))
+      });
+
+      vi.spyOn(window, 'requestAnimationFrame').mockImplementation(
+        (cb) => setTimeout(cb, 10) as unknown as number
+      );
+
+      render(<LabContent locale="es" />);
+
+      const typoBtn = screen.getByRole('button', { name: /Tipografía/i });
+      await act(async () => {
+        fireEvent.click(typoBtn);
+      });
+
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+
+      expect(scrollIntoViewMock).toHaveBeenCalledWith({
+        behavior: 'auto',
+        block: 'start'
+      });
     });
   });
 });

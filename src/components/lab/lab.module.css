@@ -309,11 +309,17 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  scroll-margin-top: 5.5rem;
 }
 
 /* Experiment Section Wrapper */
 .experimentSection {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.experimentSection > article,
+.experimentSection > section {
+  scroll-margin-top: 5.5rem;
 }
 
 .experimentHeader {
