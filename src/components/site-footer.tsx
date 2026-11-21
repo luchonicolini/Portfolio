@@ -15,7 +15,7 @@ export function SiteFooter({ locale, variant = 'default' }: SiteFooterProps) {
   const navLinks = [
     { label: es ? 'Proyectos' : 'Work', href: `/${locale}/work` },
     { label: es ? 'Sobre mí' : 'About', href: `/${locale}/about` },
-    { label: 'Lab', href: `/${locale}#lab` },
+    { label: 'Lab', href: `/${locale}/lab` },
     { label: es ? 'Contacto' : 'Contact', href: `/${locale}/contact` }
   ];
 
