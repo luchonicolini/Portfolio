@@ -110,6 +110,8 @@
   color: var(--color-ink);
   text-decoration: none;
   cursor: pointer;
+  max-width: 100%;
+  box-sizing: border-box;
   transition:
     transform var(--motion-fast) var(--ease-out),
     box-shadow var(--motion-fast) var(--ease-out);
@@ -141,6 +143,8 @@
   color: var(--color-ink);
   text-decoration: none;
   cursor: pointer;
+  max-width: 100%;
+  box-sizing: border-box;
   transition:
     transform var(--motion-fast) var(--ease-out),
     box-shadow var(--motion-fast) var(--ease-out);
@@ -167,6 +171,9 @@
   color: var(--color-ink);
   opacity: 0.85;
   cursor: default;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .badgeSmall {
@@ -177,6 +184,7 @@
   font-weight: 700;
   padding: 0.15rem 0.4rem;
   margin-left: 0.35rem;
+  white-space: nowrap;
 }
 
 /* Typographic / Geometric Neo-brutalist Avatar */
@@ -669,6 +677,13 @@
   padding-left: 1.25rem;
 }
 
+.cvBannerRight {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .introLayout {
@@ -696,7 +711,9 @@
   }
 
   .headline {
-    font-size: clamp(2.25rem, 9vw, 3.5rem);
+    font-size: clamp(2rem, 8.5vw, 3.25rem);
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .actions {
@@ -708,19 +725,44 @@
   .btnSecondary,
   .btnDisabled {
     justify-content: center;
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.85rem;
+    text-align: center;
   }
 
   .cvBanner {
     flex-direction: column;
     align-items: stretch;
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 0.85rem;
     gap: 1.25rem;
+    box-shadow: 4px 4px 0 var(--color-ink);
   }
 
   .cvBannerLeft {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .cvBannerRight {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .cvTitle {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .cvDesc {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .cvHazard {

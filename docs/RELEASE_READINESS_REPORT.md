@@ -143,6 +143,9 @@ The repository continuous integration workflow (`.github/workflows/ci.yml`) has 
 | Playwright DS Preview | `npm run test:preview` | 27.9s | **5/5 tests pass** |
 | Security Audit | `npm audit` | 1.2s | **0 vulnerabilities** |
 
+> [!NOTE]
+> In Phase 10.1, a 320px responsive reflow overflow on `/es/about` (which occurred on Ubuntu GitHub Actions runners due to font rendering metric variances) was resolved by setting `box-sizing: border-box`, `max-width: 100%`, `flex-wrap: wrap`, and compact mobile padding on `.btnDisabled` and `.cvBanner`. All 21 E2E tests, 5 preview tests, and Lighthouse assertions pass across Linux and Windows.
+
 ---
 
 ## 7. Content Review Findings
