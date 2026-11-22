@@ -3,6 +3,12 @@ import { routing } from '@/i18n/routing';
 import { getAllProjects } from '@/data/projects';
 import { getSiteUrlString } from '@/lib/site-url';
 
+/**
+ * Stable release date timestamp to avoid unnecessary re-crawling on every build.
+ * Update this timestamp when publishing a new version or content release.
+ */
+export const SITEMAP_RELEASE_DATE = new Date('2026-11-21T00:00:00.000Z');
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrlString();
   const projects = getAllProjects();
@@ -22,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const locale of routing.locales) {
       entries.push({
         url: `${siteUrl}/${locale}${page.path}`,
-        lastModified: new Date(),
+        lastModified: SITEMAP_RELEASE_DATE,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
         alternates: {
@@ -41,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const projectPath = `/work/${project.slug}`;
       entries.push({
         url: `${siteUrl}/${locale}${projectPath}`,
-        lastModified: new Date(),
+        lastModified: SITEMAP_RELEASE_DATE,
         changeFrequency: 'monthly',
         priority: 0.85,
         alternates: {
