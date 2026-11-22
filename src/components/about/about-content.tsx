@@ -136,6 +136,41 @@ export function AboutContent({ locale }: { locale: string }) {
                 : "I'm Luciano Nicolini, a mobile and web developer. I focus on building useful, accessible products with refined user experiences that solve real problems."}
             </p>
 
+            <div className={styles.initiativeBox}>
+              <p className={styles.initiativeText}>
+                {es ? (
+                  <>
+                    Además de desarrollar aplicaciones y productos digitales,
+                    impulso{' '}
+                    <a
+                      href="https://nicolini-design.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.initiativeLink}
+                    >
+                      Nicolini Design ↗
+                    </a>
+                    , un emprendimiento independiente dedicado al diseño y
+                    desarrollo de sitios web para negocios.
+                  </>
+                ) : (
+                  <>
+                    Alongside building applications and digital products, I run{' '}
+                    <a
+                      href="https://nicolini-design.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.initiativeLink}
+                    >
+                      Nicolini Design ↗
+                    </a>
+                    , an independent initiative focused on designing and
+                    developing websites for businesses.
+                  </>
+                )}
+              </p>
+            </div>
+
             <div className={styles.actions}>
               <Link href={`/${locale}#work`} className={styles.btnPrimary}>
                 <span>{es ? 'Ver proyectos' : 'Explore work'}</span>
@@ -351,16 +386,16 @@ export function AboutContent({ locale }: { locale: string }) {
                     <span className={styles.currentlyDotYellow} />
                     <span>
                       {es
-                        ? 'LeadRadar — prospección y auditoría web'
-                        : 'LeadRadar — web audit & pipeline'}
+                        ? 'Nicolini Design — desarrollo web para negocios'
+                        : 'Nicolini Design — web development for businesses'}
                     </span>
                   </li>
                   <li className={styles.currentlyItem}>
                     <span className={styles.currentlyDotPink} />
                     <span>
                       {es
-                        ? 'Portafolio — diseño editorial y sistemas'
-                        : 'Portfolio — editorial design system'}
+                        ? 'LeadRadar & Portafolio — auditoría y diseño editorial'
+                        : 'LeadRadar & Portfolio — web audits & design system'}
                     </span>
                   </li>
                 </ul>

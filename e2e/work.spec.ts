@@ -3,14 +3,14 @@ import AxeBuilder from '@axe-core/playwright';
 
 test('work filters persist in the URL and history', async ({ page }) => {
   await page.goto('/es/work');
-  await expect(page.getByText('6 proyectos')).toBeVisible();
+  await expect(page.getByText('7 proyectos')).toBeVisible();
   await page.getByRole('button', { name: 'Mobile', exact: true }).click();
   await expect(page).toHaveURL(/category=mobile/);
   await expect(page.getByText('2 proyectos')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Puente' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'DolarTo' })).toHaveCount(0);
   await page.goBack();
-  await expect(page.getByText('6 proyectos')).toBeVisible();
+  await expect(page.getByText('7 proyectos')).toBeVisible();
   await page.goForward();
   await expect(page.getByText('2 proyectos')).toBeVisible();
   await page.getByRole('link', { name: /Cambiar idioma a inglés/ }).click();
@@ -27,7 +27,8 @@ test('all localized cases render and unknown slugs return 404', async ({
       'stitchhub',
       'leadradar',
       'rial-electronica',
-      'scopeguard'
+      'scopeguard',
+      'nicolini-design'
     ]) {
       const response = await page.goto(`/${locale}/work/${slug}`);
       expect(response?.status()).toBe(200);
@@ -60,7 +61,8 @@ test('capture review screenshots after assets settle', async ({ page }) => {
   for (const [path, name] of [
     ['work', 'work'],
     ['work/puente', 'puente-detail'],
-    ['work/stitchhub', 'stitchhub-detail']
+    ['work/stitchhub', 'stitchhub-detail'],
+    ['work/nicolini-design', 'nicolini-design-detail']
   ]) {
     for (const [width, height, size] of [
       [1440, 900, 'desktop'],

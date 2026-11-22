@@ -174,9 +174,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
                         ? es
                           ? 'Demostración de catálogo comercial independiente (no oficial, sin cobros reales).'
                           : 'Independent unofficial commercial catalog demo (no real payment processing).'
-                        : es
-                          ? 'Captura del proyecto.'
-                          : 'Project screenshot.'}
+                        : slug === 'nicolini-design'
+                          ? es
+                            ? 'Captura real del sitio web de Nicolini Design en producción.'
+                            : 'Authentic screenshot of the live Nicolini Design business website.'
+                          : es
+                            ? 'Captura del proyecto.'
+                            : 'Project screenshot.'}
                 </figcaption>
                 {copy.disclaimer ? (
                   <div className={styles.disclaimerBadge}>
@@ -252,6 +256,21 @@ export default async function ProjectPage({ params }: { params: Params }) {
                       </span>
                     )}
                   </div>
+                  {project.liveUrl ? (
+                    <div className={styles.metaRow}>
+                      <span className={styles.metaLabel}>
+                        {es ? 'Sitio en vivo' : 'Live site'}
+                      </span>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.metaLink}
+                      >
+                        {es ? 'Visitar web ↗' : 'Visit site ↗'}
+                      </a>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>

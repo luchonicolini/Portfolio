@@ -582,6 +582,96 @@ export const caseStudies: Record<string, CaseStudy> = {
         }
       ]
     }
+  },
+  'nicolini-design': {
+    es: {
+      overview:
+        'Iniciativa comercial independiente de diseño y desarrollo web para profesionales y empresas, construida como una plataforma rápida, clara y orientada a consultas.',
+      problem:
+        'Muchos negocios y profesionales necesitan una presencia digital sólida pero se encuentran con propuestas ambiguas en alcance, presupuestos imprevistos o sitios lentos basados en plantillas genéricas que dificultan el contacto directo con clientes.',
+      solution:
+        'Un sitio web comercial desarrollado a medida en Next.js y TypeScript que estructura la oferta de servicios por etapas, define condiciones contractuales transparentes (alcance, plazos y esquemas de pago) e integra canales directos de consulta por WhatsApp y formularios.',
+      implementation:
+        'Arquitectura en Next.js 16 (App Router) con Turbopack, React 19 y Tailwind CSS v4. Incluye ficha técnica en el hero con especificaciones de entrega, navegación modular, catálogo de proyectos con filtro por tipología (landing page, multipágina, tienda/sistema), tablas de precios detalladas y componentes accesibles mediante Radix UI.',
+      architecture:
+        'Estructura modular con separación estricta entre capa de presentación y datos en TypeScript (archivo prototipo.ts). Renderizado estático optimizado, despliegue continuo en Vercel con red CDN global, tipado estricto y analítica web configurada mediante Vercel Analytics y Speed Insights.',
+      design:
+        'Identidad visual sobria de inspiración técnica/arquitectónica, con fichas de datos estilo plano (CAD sheet), bordes definidos, contrastes altos y tipografías sans-serif limpias. Totalmente adaptado a navegación móvil con accesos directos de contacto.',
+      testing:
+        'Validación de tipado estricto con TypeScript (tsc --noEmit), linting mediante ESLint 9 con configuración de Next.js, pruebas de maquetación responsive en múltiples anchos de pantalla y auditoría de accesibilidad en formularios y acordeones.',
+      limitations:
+        'El sitio funciona como plataforma de presentación de servicios y captación de consultas; las contrataciones comerciales y acuerdos de alcance se gestionan de forma individual y directa con cada cliente sin pasarelas de pago automatizadas en el sitio.',
+      platforms: 'Web (Next.js / Vercel)',
+      statusBadge: 'En producción · Emprendimiento activo',
+      disclaimer:
+        'Sitio comercial activo e independiente; los casos de estudio y demostraciones se presentan con fines ilustrativos de capacidad técnica.',
+      features: [
+        {
+          title: 'Presentación clara de servicios',
+          desc: 'Soluciones diferenciadas para cada etapa: landing pages, sitios multipágina y tiendas o sistemas.'
+        },
+        {
+          title: 'Condiciones y alcance por escrito',
+          desc: 'Esquema de trabajo con precio acordado, plazos de 7 a 10 días y entrega de accesos al cliente.'
+        },
+        {
+          title: 'Canales directos de consulta',
+          desc: 'Integración de WhatsApp directo y formulario estructurado para reducir fricción en el primer contacto.'
+        },
+        {
+          title: 'Código moderno sin constructores pesados',
+          desc: 'Next.js 16 con React 19, componentes de Radix UI y Tailwind CSS v4 con carga ultrarrápida.'
+        },
+        {
+          title: 'Muestras y catálogo categorizado',
+          desc: 'Sección de obras con filtros por tipo de proyecto y demostraciones navegables transparentes.'
+        }
+      ]
+    },
+    en: {
+      overview:
+        'Independent commercial web design and development initiative for businesses and professionals, built as a fast, clear, and inquiry-focused digital platform.',
+      problem:
+        'Businesses and professionals often require a credible digital presence but face unpredictable scopes, hidden costs, or slow template-heavy sites that hinder direct customer inquiries.',
+      solution:
+        'A custom-built commercial website in Next.js and TypeScript organizing service tiers, defining upfront written terms (scope, delivery timelines, and payment milestones), and integrating direct WhatsApp and form inquiry channels.',
+      implementation:
+        'Next.js 16 (App Router) architecture with Turbopack, React 19, and Tailwind CSS v4. Features a CAD-style technical specification sheet in the hero, modular section navigation, project catalog filtered by format (landing page, multi-page, store/system), detailed pricing tables, and accessible Radix UI accordions.',
+      architecture:
+        'Modular architecture separating presentation components from typed TypeScript content schemas (prototipo.ts). Optimized static generation, continuous deployment on Vercel with global CDN edge distribution, strict typing, and analytics powered by Vercel Analytics and Speed Insights.',
+      design:
+        'Technical, blueprint-inspired visual identity featuring CAD-style data cards, crisp line borders, high contrast, and clean sans-serif typography. Thoroughly adapted for mobile browsing with quick-action contact triggers.',
+      testing:
+        'Type safety verified via strict TypeScript compilation (tsc --noEmit), ESLint 9 linting under Next.js rules, responsive layout checks across device viewports, and accessibility audits for form controls and accordions.',
+      limitations:
+        'The website serves as an inquiry generation and service presentation platform; actual client contracts and project scopes are managed directly on an individual basis without automated online checkout.',
+      platforms: 'Web (Next.js / Vercel)',
+      statusBadge: 'Live in production · Active initiative',
+      disclaimer:
+        'Active independent business website; featured showcase examples are presented for technical capability illustration.',
+      features: [
+        {
+          title: 'Transparent service tiers',
+          desc: 'Clear solutions for different business stages: landing pages, multi-page corporate sites, and systems.'
+        },
+        {
+          title: 'Defined upfront terms',
+          desc: 'Fixed-price commitments, 7-to-10 day delivery windows, and full client ownership of domains and assets.'
+        },
+        {
+          title: 'Direct inquiry channels',
+          desc: 'Direct WhatsApp integration and structured project inquiry form to minimize contact friction.'
+        },
+        {
+          title: 'Modern stack without heavy builders',
+          desc: 'Engineered with Next.js 16, React 19, Radix UI primitives, and Tailwind CSS v4 for sub-second loading.'
+        },
+        {
+          title: 'Categorized project showcase',
+          desc: 'Showcase section with format filters and transparent demonstrative and client project examples.'
+        }
+      ]
+    }
   }
 };
 

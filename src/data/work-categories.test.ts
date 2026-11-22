@@ -32,7 +32,7 @@ describe('work categories', () => {
     ).toEqual(['leadradar']);
     expect(
       filterProjects(projects, 'web-design').map((project) => project.slug)
-    ).toEqual(['rial-electronica']);
+    ).toEqual(['rial-electronica', 'nicolini-design']);
     expect(new Set(projects.map((project) => project.slug)).size).toBe(
       projects.length
     );

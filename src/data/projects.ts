@@ -316,6 +316,59 @@ export const projects: Project[] = [
         'Client sign-off workflow planned'
       ]
     }
+  },
+  {
+    id: 'nicolini-design',
+    slug: 'nicolini-design',
+    featured: false,
+    priorityOrder: 7,
+    category: 'web-design',
+    status: 'deployed',
+    accentColor: 'yellow',
+    technologies: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS v4',
+      'Radix UI'
+    ],
+    repositoryUrl: 'https://github.com/luchonicolini/Emprendimiento-web',
+    liveUrl: 'https://nicolini-design.vercel.app/',
+    image: {
+      src: '/projects/nicolini-design/preview.png',
+      width: 400,
+      height: 250,
+      altEs:
+        'Nicolini Design — Plataforma de diseño y desarrollo web para negocios',
+      altEn:
+        'Nicolini Design — Web design and development platform for businesses'
+    },
+    es: {
+      title: 'Nicolini Design',
+      tagline: 'Emprendimiento de diseño y desarrollo web para negocios',
+      description:
+        'Iniciativa comercial independiente enfocada en la creación de sitios web a medida para profesionales y empresas, combinando arquitectura moderna en Next.js, diseño responsive y comunicación orientada a consultas.',
+      categoryLabel: 'Web Design / Emprendimiento',
+      statusLabel: 'En producción · Iniciativa comercial',
+      highlights: [
+        'Next.js 16 App Router con Turbopack y React 19',
+        'Presupuestador interactivo y catálogo por etapas',
+        'Enfoque comercial y canales directos de consulta'
+      ]
+    },
+    en: {
+      title: 'Nicolini Design',
+      tagline: 'Independent web design and development business',
+      description:
+        'Independent commercial initiative providing bespoke website design and engineering for businesses, combining modern Next.js architecture, responsive layouts, and conversion-focused customer communication.',
+      categoryLabel: 'Web Design / Initiative',
+      statusLabel: 'Live in production · Commercial initiative',
+      highlights: [
+        'Next.js 16 App Router with Turbopack and React 19',
+        'Interactive quote estimator and scoped service tiers',
+        'Direct contact channels and performance analytics'
+      ]
+    }
   }
 ];
 

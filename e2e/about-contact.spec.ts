@@ -67,6 +67,14 @@ test('About page is accessible, responsive and verified across locales', async (
     await expect(page.getByText('SwiftUI').first()).toBeVisible();
     await expect(page.getByText('Next.js').first()).toBeVisible();
 
+    // Verify Nicolini Design independent initiative link
+    const nicoliniLink = page.locator(
+      'a[href="https://nicolini-design.vercel.app/"]'
+    );
+    await expect(nicoliniLink).toBeVisible();
+    await expect(nicoliniLink).toHaveAttribute('target', '_blank');
+    await expect(nicoliniLink).toHaveAttribute('rel', 'noopener noreferrer');
+
     // Verify active navigation link
     const activeAboutNav = page
       .getByRole('navigation', { name: /Navegación principal|Main navigation/ })

@@ -14,13 +14,14 @@ describe('case-studies data inventory and fact verification', () => {
     'stitchhub',
     'leadradar',
     'rial-electronica',
-    'scopeguard'
+    'scopeguard',
+    'nicolini-design'
   ];
 
-  it('contains entries for all 6 verified projects in inventory', () => {
+  it('contains entries for all 7 verified projects in inventory', () => {
     const slugs = getAllCaseStudySlugs();
     expect(slugs.sort()).toEqual(expectedSlugs.sort());
-    expect(slugs.length).toBe(6);
+    expect(slugs.length).toBe(7);
 
     const projectSlugs = getAllProjects().map((p) => p.slug);
     for (const slug of projectSlugs) {
@@ -167,6 +168,45 @@ describe('case-studies data inventory and fact verification', () => {
       expect(scopeguard.es.limitations).toMatch(/aprobaciones reales/i);
       expect(scopeguard.en.limitations).toMatch(/remote backend|prototype/i);
       expect(scopeguard.en.limitations).toMatch(/real approvals/i);
+    });
+  });
+
+  describe('Nicolini Design fact constraints', () => {
+    const nicolini = caseStudies['nicolini-design'];
+
+    it('documents Next.js 16, React 19, Tailwind CSS v4 and Radix UI', () => {
+      expect(nicolini.es.implementation).toContain('Next.js 16');
+      expect(nicolini.es.implementation).toContain('React 19');
+      expect(nicolini.es.implementation).toContain('Tailwind CSS v4');
+      expect(nicolini.es.implementation).toContain('Radix UI');
+      expect(nicolini.en.implementation).toContain('Next.js 16');
+      expect(nicolini.en.implementation).toContain('React 19');
+      expect(nicolini.en.implementation).toContain('Tailwind CSS v4');
+      expect(nicolini.en.implementation).toContain('Radix UI');
+      expect(nicolini.es.architecture).toContain('prototipo.ts');
+      expect(nicolini.en.architecture).toContain('prototipo.ts');
+    });
+
+    it('focuses on structured scope agreements and direct inquiries without automated payments', () => {
+      expect(nicolini.es.solution).toMatch(/WhatsApp|formularios/i);
+      expect(nicolini.en.solution).toMatch(/WhatsApp|form/i);
+      expect(nicolini.es.limitations).toMatch(
+        /pasarelas de pago automatizadas/i
+      );
+      expect(nicolini.en.limitations).toMatch(
+        /automated (?:online checkout|payment gateway)/i
+      );
+    });
+
+    it('identifies as an independent commercial initiative with transparent terms', () => {
+      expect(nicolini.es.overview).toMatch(
+        /iniciativa comercial independiente/i
+      );
+      expect(nicolini.en.overview).toMatch(
+        /independent commercial.*initiative/i
+      );
+      expect(nicolini.es.disclaimer).toMatch(/independiente/i);
+      expect(nicolini.en.disclaimer).toMatch(/independent/i);
     });
   });
 
